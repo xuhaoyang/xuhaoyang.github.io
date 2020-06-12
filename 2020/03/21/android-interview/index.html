@@ -1,0 +1,3109 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Android面试知识, 记录小站">
+    <meta name="description" content="Android InterviewAndroid的大体架构图
+分为四个层次：linux内核；libraies和Android runntime；framework；Application
+
+
+Android的四大组件是哪些，它们的作用？
+
+">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Android面试知识 | 记录小站</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+    
+<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">记录小站</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">记录小站</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Android面试知识</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Android/">
+                                <span class="chip bg-color">Android</span>
+                            </a>
+                        
+                            <a href="/tags/Java/">
+                                <span class="chip bg-color">Java</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%9F%A5%E8%AF%86/">
+                                <span class="chip bg-color">知识</span>
+                            </a>
+                        
+                            <a href="/tags/%E9%9D%A2%E8%AF%95/">
+                                <span class="chip bg-color">面试</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%80%BB%E7%BB%93/" class="post-category">
+                                总结
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-03-21
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Android-Interview"><a href="#Android-Interview" class="headerlink" title="Android Interview"></a>Android Interview</h1><h3 id="Android的大体架构图"><a href="#Android的大体架构图" class="headerlink" title="Android的大体架构图"></a><a href="https://juejin.im/post/5a93a1f1f265da4e8b300059" target="_blank" rel="noopener">Android的大体架构图</a></h3><blockquote>
+<p>分为四个层次：linux内核；libraies和Android runntime；framework；Application</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/2/26/161d0b2cc51eff90?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></p>
+</blockquote>
+<h3 id="Android的四大组件是哪些，它们的作用？"><a href="#Android的四大组件是哪些，它们的作用？" class="headerlink" title="Android的四大组件是哪些，它们的作用？"></a><a href="https://blog.csdn.net/shiretan/article/details/55053857" target="_blank" rel="noopener">Android的四大组件</a>是哪些，它们的作用？</h3><blockquote>
+<ol>
+<li>Activity：Activity是Android程序与用户交互的窗口,对用户来说是可见的</li>
+<li>service：后台服务于Activity,是一个服务，不可见</li>
+<li>Content Provider：对外提提供数据</li>
+<li>BroadCast Receiver：接受一种或者多种Intent作触发事件，接受相关消息，做一些简单处理</li>
+</ol>
+</blockquote>
+<h3 id="Android-中进程的优先级"><a href="#Android-中进程的优先级" class="headerlink" title="Android 中进程的优先级"></a><a href="https://blog.csdn.net/omnispace/article/details/73320950" target="_blank" rel="noopener">Android 中进程的优先级</a></h3><blockquote>
+<ol>
+<li>前台进程</li>
+<li>可见进程</li>
+<li>服务进程</li>
+<li>后台进程</li>
+<li>空进程</li>
+</ol>
+</blockquote>
+<h3 id="Android中asset和res目录的区别"><a href="#Android中asset和res目录的区别" class="headerlink" title="Android中asset和res目录的区别"></a>Android中asset和res目录的区别</h3><blockquote>
+<ol>
+<li>res目录下的资源文件会在R文件中生成对应的id，asset不会\</li>
+<li>res目录下的文件在生成apk时，除raw（即res/raw）目录下文件不进行编译外，都会被编译成二进制文件；asset目录下的文件不会进行编译</li>
+<li>asset目录允许有子目录</li>
+</ol>
+</blockquote>
+<h3 id="Android中App-是如何沙箱化的-为何要这么做"><a href="#Android中App-是如何沙箱化的-为何要这么做" class="headerlink" title="Android中App 是如何沙箱化的,为何要这么做"></a><a href="https://blog.csdn.net/ljheee/article/details/53191397" target="_blank" rel="noopener">Android中App 是如何沙箱化的,为何要这么做</a></h3><blockquote>
+<ol>
+<li>沙箱化可以提升安全性和效率</li>
+<li>Android的底层内核为Linux，因此继承了Linux良好的安全性，并对其进行了优化。在Linux中，一个用户对应一个uid，而在Android中，（通常）一个APP对应一个uid，拥有独立的资源和空间，与其他APP互不干扰。如有两个APP A和B，A并不能访问B的资源，A的崩溃也不会对B造成影响，从而保证了安全性和效率</li>
+</ol>
+</blockquote>
+<h2 id="Activity"><a href="#Activity" class="headerlink" title="Activity"></a>Activity</h2><hr>
+<h3 id="Activity-生命周期"><a href="#Activity-生命周期" class="headerlink" title="Activity 生命周期"></a>Activity 生命周期</h3><p><img src="https://user-gold-cdn.xitu.io/2018/4/15/162c87b50447983f?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></p>
+<h3 id="Activity在屏幕旋转时的生命周期"><a href="#Activity在屏幕旋转时的生命周期" class="headerlink" title="Activity在屏幕旋转时的生命周期"></a>Activity在屏幕旋转时的生命周期</h3><blockquote>
+<ol>
+<li>没有任何设置时，会调用整个生命周期方法，并且会调用onSaveInstance和onRestoreInstanceState方法</li>
+<li>在Manifest中为Activity设置android:configChanges=”orientation”时，只调用onConfigChanges方法</li>
+<li>android:configChanges=”orientation”属性有可能不起作用，依然会调用整个生命周期方法，这是因为不同版本处理方式可能不同，有时候还需要加上android:configChanges=”orientation|keyboardHidden|screenSize”等。</li>
+</ol>
+</blockquote>
+<h3 id="onSaveInstanceState-什么时候调用"><a href="#onSaveInstanceState-什么时候调用" class="headerlink" title="onSaveInstanceState 什么时候调用"></a>onSaveInstanceState 什么时候调用</h3><blockquote>
+<ol>
+<li>非用户主动明确结束（按back键，自定义click方法调用finish）时都会调用onSaveInstanceState：<ol>
+<li>屏幕旋转</li>
+<li>按HOME键</li>
+<li>内存不足</li>
+<li>从一个activity启动另一个activity</li>
+</ol>
+</li>
+<li>这个方法的调用时机是在onStop前，但是它和onPause没有既定的时序关系</li>
+</ol>
+</blockquote>
+<h3 id="自定义View控件的状态被保存需要满足两个条件"><a href="#自定义View控件的状态被保存需要满足两个条件" class="headerlink" title="自定义View控件的状态被保存需要满足两个条件"></a>自定义View控件的状态被保存需要满足两个条件</h3><blockquote>
+<ol>
+<li>View有唯一的ID</li>
+<li>View的初始化时要调用setSaveEnabled(true)</li>
+</ol>
+</blockquote>
+<h3 id="configChanges属性"><a href="#configChanges属性" class="headerlink" title="configChanges属性"></a>configChanges属性</h3><blockquote>
+<p>对Activity配置了android:configChanges=”xxx”属性之后，Activity就不会在对应变化发生时重新创建，而是调用Activity的onConfigurationChanged方法。常用的有local：设备的本地位置发生了变化，一般指切换了系统语言；keyboardHidden：键盘的可访问性发生了变化，比如用户调出了键盘；orientation：屏幕方向发生了变化，比如旋转了手机屏幕。</p>
+</blockquote>
+<h3 id="A-activity启动B-activity和B-activity返回A-activity的生命周期执行过程"><a href="#A-activity启动B-activity和B-activity返回A-activity的生命周期执行过程" class="headerlink" title="A activity启动B activity和B activity返回A activity的生命周期执行过程"></a>A activity启动B activity和B activity返回A activity的生命周期执行过程</h3><blockquote>
+<ol>
+<li>A启动B:A.onPause()→B.onCreate()→B.onStart()→B.onResume()→A.onStop</li>
+<li>B返回A：B.onPause()→A.onRestart()/A.onCreate()→A.onStart()→A.onResume()→B.onStop()</li>
+</ol>
+</blockquote>
+<h3 id="Activity执行finish后的生命周期"><a href="#Activity执行finish后的生命周期" class="headerlink" title="Activity执行finish后的生命周期"></a><a href="https://www.jianshu.com/p/ede291c83e70" target="_blank" rel="noopener">Activity执行finish后的生命周期</a></h3><blockquote>
+<ol>
+<li>在onCreate中执行：onCreate -&gt; onDestroy</li>
+<li>在onStart中执行：onCreate -&gt; onStart -&gt; onStop -&gt; onDestroy</li>
+<li>在onResume中执行：onCreate -&gt; onStart -&gt; onResume -&gt; onpause -&gt; onStop -&gt; onDestroy</li>
+</ol>
+</blockquote>
+<h3 id="如果用了一些解耦的策略，怎么管理生命周期的？"><a href="#如果用了一些解耦的策略，怎么管理生命周期的？" class="headerlink" title="如果用了一些解耦的策略，怎么管理生命周期的？"></a>如果用了一些解耦的策略，怎么管理生命周期的？</h3><blockquote>
+<ol>
+<li><p>可以用Google的</p>
+<p>LifeCycle框架</p>
+<p>\0. 引入LifeCycle框架</p>
+<ol>
+<li>将控件实现LifecycleObserver接口</li>
+<li>在Activity中中注册控件：getLifeCycle().addObderver(View);</li>
+<li>在控件中使用：  @OnLifecycleEvent(Lifecycle.Event.ON_START)</li>
+</ol>
+</li>
+</ol>
+</blockquote>
+<h3 id="Activity的启动流程"><a href="#Activity的启动流程" class="headerlink" title="Activity的启动流程"></a><a href="http://www.sohu.com/a/130814934_675634" target="_blank" rel="noopener">Activity的启动流程</a></h3><p><img src="https://user-gold-cdn.xitu.io/2018/4/25/162f87ee1dc37bf4?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></p>
+<h3 id="Android中Activity的启动模式"><a href="#Android中Activity的启动模式" class="headerlink" title="Android中Activity的启动模式"></a><a href="https://blog.csdn.net/CodeEmperor/article/details/50481726" target="_blank" rel="noopener">Android中Activity的启动模式</a></h3><blockquote>
+<ol>
+<li>standard:每一次启动，都会生成一个新的实例，放入栈顶中</li>
+<li>singleTop:通过singelTop启动Activity时，如果发现有需要启动的实例正在栈顶，责直接重用，否则生成新的实例</li>
+<li>singleTask:通过singleTask启动Activity时，如果发现有需要启动的实例正在栈中，责直接移除它上边的实例，并重用该实例，否则生成新的实例</li>
+<li>singleInstance:通过singleTask启动Activity时，会启用一个新的栈结构，并将新生成的实例放入栈中。</li>
+</ol>
+</blockquote>
+<h3 id="TaskAffinity-属性"><a href="#TaskAffinity-属性" class="headerlink" title="TaskAffinity 属性"></a>TaskAffinity 属性</h3><blockquote>
+<ol>
+<li>任务相关性，标识一个Activity所需的任务栈的名字。默认情况下，所有的Activity所需的任务栈的名字是应用的包名，当然也可以单独指定TaskAffinity属性。</li>
+<li>TaskAffinity属性主要和singleTask启动模式和allowTaskRepeating属性配对使用，在其他情况下使用没有意义</li>
+<li>当TaskAffinity和singleTask启动模式配对使用的时候，它是具有该模式的Activity的目前任务栈的名字，待启动的Activity会运行在名字和TaskAffinity相同的任务栈中</li>
+<li>当TaskAffinity和allowTaskReparenting结合的时候，当一个应用A启动了应用B的某个Activity C后，如果Activity C的allowTaskReparenting属性设置为true的话，那么当应用B被启动后，系统会发现Activity C所需的任务栈存在了，就将Activity C从A的任务栈中转移到B的任务栈中。</li>
+</ol>
+</blockquote>
+<h3 id="Activity启动模式的TaskAffinity和allowTaskReparenting"><a href="#Activity启动模式的TaskAffinity和allowTaskReparenting" class="headerlink" title="Activity启动模式的TaskAffinity和allowTaskReparenting"></a><a href="https://blog.csdn.net/javazejian/article/details/52072131" target="_blank" rel="noopener">Activity启动模式的TaskAffinity和allowTaskReparenting</a></h3><blockquote>
+<ol>
+<li>TaskAffinity配合singleTask使用，指定任务栈：如果没有TaskAffinity指定的任务栈，则开启新栈</li>
+<li>allowTaskReparenting配合standard和singleTop使用，标明该Activity的任务栈可以重新设置</li>
+</ol>
+</blockquote>
+<h3 id="当前应用有两个Activity-A和B，B的-android-launchMode-设置了singleTask模式，A是默认的standard，那么A-startActivity启动B，B会新启一个Task吗？如果不会，那么startActivity的Intent加上FLAG-ACTIVITY-NEW-TASK这个参数会不会呢？"><a href="#当前应用有两个Activity-A和B，B的-android-launchMode-设置了singleTask模式，A是默认的standard，那么A-startActivity启动B，B会新启一个Task吗？如果不会，那么startActivity的Intent加上FLAG-ACTIVITY-NEW-TASK这个参数会不会呢？" class="headerlink" title="当前应用有两个Activity A和B，B的 android:launchMode 设置了singleTask模式，A是默认的standard，那么A startActivity启动B，B会新启一个Task吗？如果不会，那么startActivity的Intent加上FLAG_ACTIVITY_NEW_TASK这个参数会不会呢？"></a>当前应用有两个Activity A和B，B的 android:launchMode 设置了singleTask模式，A是默认的standard，那么A startActivity启动B，B会新启一个Task吗？如果不会，那么startActivity的Intent加上FLAG_ACTIVITY_NEW_TASK这个参数会不会呢？</h3><blockquote>
+<p>设置了singleTask启动模式的Activity，它在启动的时会先在系统中查看属性值affinity等于它的属性值taskAffinity ( taskAffinity默认为包名 ) 的任务栈是否存在。如果存在这样的任务栈，它就会在这个任务栈中启动，否则就会在新任务栈中启动。</p>
+</blockquote>
+<blockquote>
+<p>当Intent对象包含FLAG_ACTIVITY_NEW_TASK标记时，系统在查找时仍然按Activity的taskAffinity属性进行匹配，如果找到一个任务栈的taskAffinity与之相同，就将目标Activity压入此任务栈中，如果找不到则创建一个新的任务栈。</p>
+</blockquote>
+<blockquote>
+<p>设置了singleTask启动模式的Activity在已有的任务栈中已经存在相应的Activity实例，再启动它时会把这个Activity实例上面的Activity全部结束掉。也就是说singleTask自带clear top的效果。</p>
+</blockquote>
+<h3 id="IntentFilter的匹配规则"><a href="#IntentFilter的匹配规则" class="headerlink" title="IntentFilter的匹配规则"></a>IntentFilter的匹配规则</h3><blockquote>
+<p>IntentFilter中的过滤信息有action、category、data，为了匹配过滤列表，需要同时匹配过滤列表中的action、category、data信息，否则匹配失败。</p>
+</blockquote>
+<h3 id="验证是否有当前Activity"><a href="#验证是否有当前Activity" class="headerlink" title="验证是否有当前Activity"></a>验证是否有当前Activity</h3><blockquote>
+<ol>
+<li>PackageManager的resolveActivity方法或者Intent的resolveActivity方法：如果找不到就会返回null</li>
+<li>PackageManager的queryIntentActivities方法：它返回所有成功匹配的Activity信息</li>
+</ol>
+</blockquote>
+<h3 id="如何获取当前屏幕Activity的对象？"><a href="#如何获取当前屏幕Activity的对象？" class="headerlink" title="如何获取当前屏幕Activity的对象？"></a><a href="https://blog.csdn.net/vfush/article/details/51483436" target="_blank" rel="noopener">如何获取当前屏幕Activity的对象？</a></h3><blockquote>
+<p>通过在Application中注册Activity生命周期的监听函数Application.registerActivityLifecycleCallbacks()</p>
+</blockquote>
+<h3 id="onNewIntent调用时机"><a href="#onNewIntent调用时机" class="headerlink" title="onNewIntent调用时机"></a><a href="https://blog.csdn.net/calvin_zhou/article/details/51913413" target="_blank" rel="noopener">onNewIntent调用时机</a></h3><blockquote>
+<p>一个Activity已经启动，当再次启动它时，如果他的启动模式（如SingleTask，SingleTop）标明不需要重新启动，会调用onNewIntent</p>
+</blockquote>
+<h3 id="除了用Intent-去启动一个Activity，还有其他方法吗"><a href="#除了用Intent-去启动一个Activity，还有其他方法吗" class="headerlink" title="除了用Intent 去启动一个Activity，还有其他方法吗"></a>除了用Intent 去启动一个Activity，还有其他方法吗</h3><blockquote>
+<p>使用adb shell am 命令 :如adb shell am start com.example.fuchenxuan/.MainActivity 或者 adb shell am broadcast -a magcomm.action.TOUCH_LETTER</p>
+</blockquote>
+<h3 id="Android中子线程更新UI的方式"><a href="#Android中子线程更新UI的方式" class="headerlink" title="Android中子线程更新UI的方式"></a>Android中子线程更新UI的方式</h3><blockquote>
+<ol>
+<li>activity.runOnUiThread(runnable)</li>
+<li>通过主线程中的Handler进行更新</li>
+<li>通过View的post（）或者postDelayed方法进行更新</li>
+</ol>
+</blockquote>
+<h3 id="Activity之间的通信方式"><a href="#Activity之间的通信方式" class="headerlink" title="Activity之间的通信方式"></a><a href="https://juejin.im/post/5a9509ef6fb9a06337575d4b" target="_blank" rel="noopener">Activity之间的通信方式</a></h3><blockquote>
+<ol>
+<li>Intent</li>
+<li>BroadCast或者LocalBroadCast</li>
+<li>数据存储的方式</li>
+<li>静态变量</li>
+</ol>
+</blockquote>
+<h2 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h2><hr>
+<h3 id="Service的启动方式"><a href="#Service的启动方式" class="headerlink" title="Service的启动方式"></a><a href="https://juejin.im/post/5a96533ef265da4e967425ce" target="_blank" rel="noopener">Service的启动方式</a></h3><blockquote>
+<ol>
+<li>start</li>
+<li>bind</li>
+</ol>
+</blockquote>
+<h3 id="Service生命周期"><a href="#Service生命周期" class="headerlink" title="Service生命周期"></a>Service生命周期</h3><p><img src="https://user-gold-cdn.xitu.io/2018/4/30/163164ff001a01e3?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></p>
+<h3 id="Service-和Activity-的通信方式"><a href="#Service-和Activity-的通信方式" class="headerlink" title="Service 和Activity 的通信方式"></a>Service 和Activity 的通信方式</h3><blockquote>
+<ol>
+<li>如上Activity和Activity的通信方式</li>
+<li><a href="https://www.cnblogs.com/JMatrix/p/8296364.html" target="_blank" rel="noopener">bind方式启动时可以通过ServiceConnection通信</a>：在SerVice的onBind方法中返回一个binder，该binder可以是AIDL方法产生的，也可以是Messenger方法产生的</li>
+</ol>
+</blockquote>
+<h3 id="Service和Thread的区别"><a href="#Service和Thread的区别" class="headerlink" title="Service和Thread的区别"></a>Service和Thread的区别</h3><blockquote>
+<ol>
+<li>这是没用任何关系的两个概念，servie是系统的组件，Thread是CPU运行的最小单元</li>
+<li>Service不可见，我们可以把Service当成是不可见的Activity，用于在后台执行一些服务；</li>
+<li>Service可以运行在任意线程上，如果我们生成它时没有做特殊说明，那么它运行在主线程上</li>
+<li>很多时候我们需要在Activity中开启一个Service，再在Service中开启一个线程，这么做的原因是Service只会初始化一次，我们可以随时找到Service中生成的thread，使用场景举例：<ol>
+<li>如我们需要在多个Activity中对同一个thread进行控制时；</li>
+<li>如果你的 Thread 需要不停地隔一段时间就要连接服务器做某种同步的话，该 Thread 需要在 Activity 没有start的时候也在运行。这个时候当你 start 一个 Activity 就没有办法在该 Activity 里面控制之前创建的 Thread。因此你便需要创建并启动一个 Service ，在 Service 里面创建、运行并控制该 Thread，这样便解决了该问题</li>
+</ol>
+</li>
+</ol>
+</blockquote>
+<h3 id="为什么有时需要在Service中创建子线程而不是Activity中"><a href="#为什么有时需要在Service中创建子线程而不是Activity中" class="headerlink" title="为什么有时需要在Service中创建子线程而不是Activity中"></a><a href="http://www.cnblogs.com/yejiurui/archive/2013/11/18/3429451.html" target="_blank" rel="noopener">为什么有时需要在Service中创建子线程而不是Activity中</a></h3><blockquote>
+<p>这是因为Activity很难对Thread进行控制，当Activity被销毁之后，就没有任何其它的办法可以再重新获取到之前创建的子线程的实例。而且在一个Activity中创建的子线程，另一个Activity无法对其进行操作。但是Service就不同了，所有的Activity都可以与Service进行关联，然后可以很方便地操作其中的方法，即使Activity被销毁了，之后只要重新与Service建立关联，就又能够获取到原有的Service中Binder的实例。因此，使用Service来处理后台任务，Activity就可以放心地finish，完全不需要担心无法对后台任务进行控制的情况。</p>
+</blockquote>
+<h3 id="IntentService"><a href="#IntentService" class="headerlink" title="IntentService"></a><a href="https://www.jianshu.com/p/332b6daf91f0" target="_blank" rel="noopener">IntentService</a></h3><blockquote>
+<ol>
+<li>IntentService 是继承自 Service,内部通过HandlerThread启动一个新线程处理耗时操作么，可以看做是Service和HandlerThread的结合体，在完成了使命之后会自动停止，适合需要在工作线程处理UI无关任务的场景</li>
+<li>如果启动 IntentService 多次，那么每一个耗时操作会以工作队列的方式在 IntentService 的 onHandleIntent 回调方法中执行，依次去执行，使用串行的方式，执行完自动结束。</li>
+</ol>
+</blockquote>
+<h3 id="IntentService生命周期是怎样的"><a href="#IntentService生命周期是怎样的" class="headerlink" title="IntentService生命周期是怎样的"></a>IntentService生命周期是怎样的</h3><blockquote>
+<ol>
+<li>在所有任务执行完毕后，自动结束生命</li>
+</ol>
+</blockquote>
+<h2 id="BroadCast"><a href="#BroadCast" class="headerlink" title="BroadCast"></a>BroadCast</h2><hr>
+<h3 id="BroadCast的注册方式与区别"><a href="#BroadCast的注册方式与区别" class="headerlink" title="BroadCast的注册方式与区别"></a>BroadCast的注册方式与区别</h3><blockquote>
+<ol>
+<li>在manifest中静态注册:广播是常驻的，App关闭后仍能接收广播，唤醒App</li>
+<li>动态的注册和注销:动态注册的广播生命周期和他的宿主相同，或者调用注销方法注销广播</li>
+</ol>
+</blockquote>
+<h3 id="Android中发送BroadCast的方式"><a href="#Android中发送BroadCast的方式" class="headerlink" title="Android中发送BroadCast的方式"></a><a href="https://www.jianshu.com/p/ea5e233d9f43" target="_blank" rel="noopener">Android中发送BroadCast的方式</a></h3><blockquote>
+<ol>
+<li>无序广播：通过mContext.sendBroadcast(Intent)或mContext.sendBroadcast(Intent, String)发送的是无序广播(后者加了权限)；</li>
+<li>通过mContext.sendOrderedBroadcast(Intent, String, BroadCastReceiver, Handler, int, String, Bundle)发送的是有序广播（不再推荐使用）。</li>
+<li>在无序广播中，所有的Receiver会接收到相同广播；而在有序广播中，我们可以为Receiver设置优先级，优先级高的先接收广播，并有权对广播进行处理和决定要不要继续向下传送</li>
+</ol>
+</blockquote>
+<h3 id="BroadCastReceiver处理耗时操作"><a href="#BroadCastReceiver处理耗时操作" class="headerlink" title="BroadCastReceiver处理耗时操作"></a>BroadCastReceiver处理耗时操作</h3><blockquote>
+<ol>
+<li>BroadcastReceiver的生命周期只有一个回调方法onReceive(Context context, Intent intent)；无法进行耗时操作，即使启动线程处理，也是出于非活动状态，有可能被系统杀掉。</li>
+<li>如果需要进行耗时操作，可以启动一个service处理。</li>
+</ol>
+</blockquote>
+<h3 id="广播发送和接收的原理了解吗"><a href="#广播发送和接收的原理了解吗" class="headerlink" title="广播发送和接收的原理了解吗"></a>广播发送和接收的原理了解吗</h3><blockquote>
+<ol>
+<li>继承BroadcastReceiver，重写onReceive()方法。</li>
+<li>通过Binder机制向ActivityManagerService注册广播。</li>
+<li>通过Binder机制向ActivityMangerService发送广播。</li>
+<li>ActivityManagerService查找符合相应条件的广播（IntentFilter/Permission）的BroadcastReceiver，将广播发送到BroadcastReceiver所在的消息队列中。</li>
+<li>BroadcastReceiver所在消息队列拿到此广播后，回调它的onReceive()方法。</li>
+</ol>
+</blockquote>
+<h3 id="广播传输的数据是否有限制，是多少，为什么要限制？"><a href="#广播传输的数据是否有限制，是多少，为什么要限制？" class="headerlink" title="广播传输的数据是否有限制，是多少，为什么要限制？"></a>广播传输的数据是否有限制，是多少，为什么要限制？</h3><blockquote>
+<ol>
+<li>广播是通过Intent携带需要传递的数据的</li>
+<li>Intent是通过Binder机制实现的</li>
+<li>Binder对数据大小有限制，不同room不一样，一般为1M</li>
+</ol>
+</blockquote>
+<h3 id="Localbroadcast"><a href="#Localbroadcast" class="headerlink" title="Localbroadcast"></a><a href="https://blog.csdn.net/u013614207/article/details/46536047" target="_blank" rel="noopener">Localbroadcast</a></h3><p>本地广播，只有本进程中的receivers能接收到此广播</p>
+<blockquote>
+<p>实现原理（监听者模式）：</p>
+<ol>
+<li>LocalBroadcastManager是一个单例</li>
+<li>在LocalBroadcastManager实例中维护一个Action和ReceiverRecord的Map.(ReceiverRecord是reveiver和intentfilter的组合)</li>
+<li>当调用LocalBroadcastManager的sendBroadcast方法时，会从2中的map找到合适的receiver，让后加到待执行的队列mPendingBroadcasts，并通过Handler发送一个空消息（此Handler运行在主线程中，是创建manager时创建的）</li>
+<li>handler 的handle方法收到消息，从mPendingBroadcasts取出receiver并调用onreceive方法<br> 其他：删除方法是通过一个辅助的hashmap实现的，hashmap存储了receiver和receiverRecord</li>
+</ol>
+</blockquote>
+<h2 id="ContentProvider"><a href="#ContentProvider" class="headerlink" title="ContentProvider"></a>ContentProvider</h2><hr>
+<h3 id="请介绍下ContentProvider是如何实现数据共享的"><a href="#请介绍下ContentProvider是如何实现数据共享的" class="headerlink" title="请介绍下ContentProvider是如何实现数据共享的"></a><a href="https://blog.csdn.net/u011240877/article/details/72848608" target="_blank" rel="noopener">请介绍下ContentProvider是如何实现数据共享的</a></h3><blockquote>
+<ol>
+<li>准确的说，ContentProvider是一个APP间共享数据的接口。一个程序可以通过实现一个Content provider的抽象接口将自己的数据完全暴露出去，数据可以是SqLite中的，也可以是文件或者其他类型。</li>
+<li>使用方式：<ol>
+<li>在A APP中实现建ContentProvider，并在Manifest中生命它的Uri和权限</li>
+<li>在B APP中注册权限，并通过ContentResolver和Uri进行增删改查</li>
+</ol>
+</li>
+<li><a href="https://www.2cto.com/kf/201407/317150.html" target="_blank" rel="noopener">扩展</a>：ContentProvider底层是通过Binder机制来实现跨进程间通信，通过匿名共享内存方式进行数据的传输 一个应用进程有16个Binder线程去和远程服务进行交互，而每个线程可占用的缓存空间是128KB，超过会报异常。</li>
+</ol>
+</blockquote>
+<h3 id="每个ContentProvider的操作是在哪个线程中运行的呢（其实我们关心的是UI线程和工作线程）？比如我们在UI线程调用getContentResolver-query查询数据，而当数据量很大时（或者需要进行较长时间的计算）会不会阻塞UI线程呢？"><a href="#每个ContentProvider的操作是在哪个线程中运行的呢（其实我们关心的是UI线程和工作线程）？比如我们在UI线程调用getContentResolver-query查询数据，而当数据量很大时（或者需要进行较长时间的计算）会不会阻塞UI线程呢？" class="headerlink" title="每个ContentProvider的操作是在哪个线程中运行的呢（其实我们关心的是UI线程和工作线程）？比如我们在UI线程调用getContentResolver().query查询数据，而当数据量很大时（或者需要进行较长时间的计算）会不会阻塞UI线程呢？"></a>每个ContentProvider的操作是在哪个线程中运行的呢（其实我们关心的是UI线程和工作线程）？比如我们在UI线程调用getContentResolver().query查询数据，而当数据量很大时（或者需要进行较长时间的计算）会不会阻塞UI线程呢？</h3><blockquote>
+<ol>
+<li>ContentProvider和调用者在同一个进程，ContentProvider的方法（query/insert/update/delete等）和调用者在同一线程中</li>
+<li>ContentProvider和调用者在不同的进程，ContentProvider的方法会运行在它自身所在进程的一个Binder线程中</li>
+</ol>
+</blockquote>
+<h3 id="ContentProvider、ContentResolver与ContentObserver之间的关系是什么？"><a href="#ContentProvider、ContentResolver与ContentObserver之间的关系是什么？" class="headerlink" title="ContentProvider、ContentResolver与ContentObserver之间的关系是什么？"></a>ContentProvider、ContentResolver与ContentObserver之间的关系是什么？</h3><blockquote>
+<ol>
+<li>ContentProvider：管理数据，提供数据的增删改查操作，数据源可以是数据库、文件、XML、网络等，ContentProvider为这些数据的访问提供了统一的接口，可以用来做进程间数据共享。</li>
+<li>ContentResolver：ContentResolver可以不同URI操作不同的ContentProvider中的数据，外部进程可以通过ContentResolver与ContentProvider进行交互。</li>
+<li>ContentObserver：观察ContentProvider中的数据变化，并将变化通知给外界。</li>
+</ol>
+</blockquote>
+<h2 id="Fragment"><a href="#Fragment" class="headerlink" title="Fragment"></a>Fragment</h2><hr>
+<h3 id="Fragment生命周期"><a href="#Fragment生命周期" class="headerlink" title="Fragment生命周期"></a>Fragment生命周期</h3><blockquote>
+<p>onAttach -&gt; onCreate  -&gt; onCreateView -&gt; onActivityCreate -&gt; onStart -&gt; onResume -&gt; onPause -&gt; onStop -&gt; onDestoryView -&gt; onDestory -&gt; onDetach</p>
+</blockquote>
+<p><img src="https://user-gold-cdn.xitu.io/2018/4/15/162c87b504f15f0d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></p>
+<h3 id="遇到过哪些关于Fragment的问题，如何处理的"><a href="#遇到过哪些关于Fragment的问题，如何处理的" class="headerlink" title="遇到过哪些关于Fragment的问题，如何处理的"></a>遇到过哪些关于Fragment的问题，如何处理的</h3><blockquote>
+<p>举例：getActivity()空指针：这种情况一般发生在在异步任务里调用getActivity()，而Fragment已经onDetach()。</p>
+</blockquote>
+<h3 id="Fragment-有什么优点，-Fragment和View可以相互替换嘛"><a href="#Fragment-有什么优点，-Fragment和View可以相互替换嘛" class="headerlink" title="Fragment 有什么优点， Fragment和View可以相互替换嘛"></a>Fragment 有什么优点， Fragment和View可以相互替换嘛</h3><blockquote>
+<ol>
+<li>Fragment为了解决Andriod碎片化而产生的</li>
+<li>Fragment和View都有助于界面复用</li>
+<li>Fragment的复用粒度更大，包含生命周期和业务逻辑，通常包含好几个View</li>
+<li>View通常更关注视图的实现</li>
+</ol>
+</blockquote>
+<h3 id="Fragment-add-replace-区别"><a href="#Fragment-add-replace-区别" class="headerlink" title="Fragment add replace 区别"></a>Fragment add replace 区别</h3><ol>
+<li>replace 先删除容器中的内容，再添加</li>
+<li>add直接添加，可以配合hide适用</li>
+</ol>
+<h2 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h2><hr>
+<h3 id="0-Android中数据存储的方式有哪些"><a href="#0-Android中数据存储的方式有哪些" class="headerlink" title="0. Android中数据存储的方式有哪些"></a>0. <a href="https://juejin.im/post/5a93ade7f265da4e6f1805d6" target="_blank" rel="noopener">Android中数据存储的方式有哪些</a></h3><blockquote>
+<ol>
+<li>File</li>
+<li>SharedPreferences</li>
+<li>SQlite</li>
+<li>网络</li>
+<li>ContentProvider</li>
+</ol>
+</blockquote>
+<h3 id="1-SharedPreference是进程同步的嘛，有没有什么方法进程同步"><a href="#1-SharedPreference是进程同步的嘛，有没有什么方法进程同步" class="headerlink" title="1. SharedPreference是进程同步的嘛，有没有什么方法进程同步"></a>1. <a href="https://www.jianshu.com/p/875d13458538" target="_blank" rel="noopener">SharedPreference是进程同步的嘛，有没有什么方法进程同步</a></h3><blockquote>
+<ol>
+<li>默认不是</li>
+<li>可以设置模式MODE_MULTI_PROCESS做到进程同步，但因为该模式有很多坑，已经被Google弃用</li>
+<li>官方建议使用ContentProvider</li>
+</ol>
+</blockquote>
+<h3 id="2-SharedPreferences-commit和apply的区别"><a href="#2-SharedPreferences-commit和apply的区别" class="headerlink" title="2. SharedPreferences commit和apply的区别"></a>2. SharedPreferences commit和apply的区别</h3><blockquote>
+<ol>
+<li>commit是同步的提交，这种方式很常用，在比较早的SDK版本中就有了。这种提交方式会阻塞调用它的线程，并且这个方法会返回boolean值告知保存是否成功（如果不成功，可以做一些补救措施）。</li>
+<li>apply是异步的提交方式，目前Android Studio也会提示大家使用这种方式</li>
+</ol>
+</blockquote>
+<h3 id="3-文件存储路径与权限和权限"><a href="#3-文件存储路径与权限和权限" class="headerlink" title="3. 文件存储路径与权限和权限"></a>3. <a href="https://blog.csdn.net/u010937230/article/details/73303034" target="_blank" rel="noopener">文件存储路径与权限</a>和<a href="https://www.cnblogs.com/whoislcj/p/6137398.html" target="_blank" rel="noopener">权限</a></h3><blockquote>
+<ol>
+<li>文件存储分为内部存储和外部存储</li>
+<li>内部存储<ol>
+<li>Environment.getDataDirectory() = /data //这个方法是获取内部存储的根路径</li>
+<li>getFilesDir().getAbsolutePath() = /data/user/0/packname/files //这个方法是获取某个应用在内部存储中的files路径</li>
+<li>getCacheDir().getAbsolutePath() = /data/user/0/packname/cache  //这个方法是获取某个应用在内部存储中的cache路径</li>
+<li>getDir(“myFile”, MODE_PRIVATE).getAbsolutePath() = /data/user/0/packname/app_myFile</li>
+</ol>
+</li>
+<li>外部存储<ol>
+<li>Environment.getExternalStorageDirectory().getAbsolutePath() = /storage/emulated/0  //这个方法是获取外部存储的根路径</li>
+<li>Environment.getExternalStoragePublicDirectory(“”).getAbsolutePath() = /storage/emulated/0 这个方法是获取外部存储的根路径 3. getExternalFilesDir(“”).getAbsolutePath() = /storage/emulated/0/Android/data/packname/files 这个方法是获取某个应用在外部存储中的files路径 4. getExternalCacheDir().getAbsolutePath() = /storage/emulated/0/Android/data/packname/cache 这个方法是获取某个应用在外部存储中的cache路径</li>
+</ol>
+</li>
+<li>清楚数据和卸载APP时， 内外存储的file和cache都会被删除</li>
+<li>内部存储file和cache不需要权限；外部存储低版本上（19以下）file和cache需要权限，高版本不需要权限；Environment.getExternalStorageDirectory()需要权限</li>
+</ol>
+</blockquote>
+<h3 id="4-SQLite"><a href="#4-SQLite" class="headerlink" title="4. SQLite"></a>4. <a href="https://www.jianshu.com/p/b6634c0c8c0b" target="_blank" rel="noopener">SQLite</a></h3><blockquote>
+<ol>
+<li>SQLite每个数据库都是以单个文件（.db）的形式存在，这些数据都是以B-Tree的数据结构形式存储在磁盘上。</li>
+<li>使用SQLiteDatabase的insert，delete等方法或者execSQL方法默认都开启了事务，如果操作顺利完成才会更新.db数据库。事务的实现是依赖于名为rollback journal文件，借助这个临时文件来完成原子操作和回滚功能。在/data/data//databases/目录下看到一个和数据库同名的.db-journal文件。</li>
+</ol>
+</blockquote>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/2398aad3bd61" target="_blank" rel="noopener">如何对SQLite数据库中进行大量的数据插入?</a><br> <a href="https://www.imooc.com/article/14069" target="_blank" rel="noopener">显示的开启事务</a></p>
+</blockquote>
+<pre><code>db.beginTransaction();
+try {
+   ...
+   db.setTransactionSuccessful();
+} finally {
+   db.endTransaction();
+  }
+复制代码</code></pre><h3 id="5-数据库的升级"><a href="#5-数据库的升级" class="headerlink" title="5. 数据库的升级"></a>5. <a href="https://blog.csdn.net/qq_35114086/article/details/53319093" target="_blank" rel="noopener">数据库的升级</a></h3><blockquote>
+<ol>
+<li>Android中提供了SqLiteOpenHelper类，当版本更新时，会自动调用onUpgrade方法，我们在此方法中升级</li>
+<li>如果修改已有表，可以才有临时表的方法：<ol>
+<li>将已有表重命名成一个临时表</li>
+<li>创建新表</li>
+<li>拷贝</li>
+<li>删除临时表</li>
+</ol>
+</li>
+</ol>
+</blockquote>
+<h3 id="6-如何导入外部数据库"><a href="#6-如何导入外部数据库" class="headerlink" title="6. 如何导入外部数据库"></a>6. 如何导入外部数据库</h3><blockquote>
+<ol>
+<li>把数据库db文件放在res/raw下打包进apk</li>
+<li>通过FileInputStream读取db文件，通过FileOutputStream将文件写入/data/data/包名/database下</li>
+</ol>
+</blockquote>
+<h2 id="View"><a href="#View" class="headerlink" title="View"></a>View</h2><hr>
+<h3 id="0-android-gravity与android-layout-gravity的区别"><a href="#0-android-gravity与android-layout-gravity的区别" class="headerlink" title="0. android:gravity与android:layout_gravity的区别"></a>0. android:gravity与android:layout_gravity的区别</h3><blockquote>
+<ol>
+<li>gravity是控制当前View内布局的位置</li>
+<li>layout_gravity是控制View在父布局中的位置</li>
+</ol>
+</blockquote>
+<h3 id="1-View的绘制流程"><a href="#1-View的绘制流程" class="headerlink" title="1. View的绘制流程"></a>1. View的绘制流程</h3><blockquote>
+<p>从ViewRootImpl的performTraversals开始，经过measure，layout,draw 三个流程。draw流程结束以后就可以在屏幕上看到view了。</p>
+</blockquote>
+<h3 id="2-View的measureSpec-由谁决定-顶级view呢"><a href="#2-View的measureSpec-由谁决定-顶级view呢" class="headerlink" title="2. View的measureSpec 由谁决定?顶级view呢"></a>2. View的measureSpec 由谁决定?顶级view呢</h3><blockquote>
+<ol>
+<li>View的MeasureSpec由父容器的MeasureSpec和其自身的LayoutParams共同确定，</li>
+<li>而对于DecorView是由它的MeasureSpec由窗口尺寸和其自身的LayoutParams共同确定。</li>
+</ol>
+</blockquote>
+<h3 id="3-View和ViewGroup的基本绘制流程"><a href="#3-View和ViewGroup的基本绘制流程" class="headerlink" title="3. View和ViewGroup的基本绘制流程"></a>3. <a href="https://blog.csdn.net/u011155781/article/details/52584044" target="_blank" rel="noopener">View和ViewGroup的基本绘制流程</a></h3><h4 id="View-1"><a href="#View-1" class="headerlink" title="View"></a>View</h4><blockquote>
+<ol>
+<li>measure -&gt; onMeasure</li>
+<li>layout（onLayout方法是空的，因为他没有child了）</li>
+<li>draw -&gt; ondraw</li>
+</ol>
+</blockquote>
+<h4 id="ViewGroup"><a href="#ViewGroup" class="headerlink" title="ViewGroup"></a>ViewGroup</h4><blockquote>
+<ol>
+<li>measure -&gt; onMeasure (onMeasure中需要调用childView的measure计算大小)</li>
+<li>layout -&gt; onLayout （onLayout方法中调用childView的layout方法）</li>
+<li>draw -&gt; onDraw （ViewGroup一般不绘制自己，ViewGroup默认实现dispatchDraw去绘制孩子）</li>
+</ol>
+</blockquote>
+<h3 id="4-draw方法-大概有几个步骤"><a href="#4-draw方法-大概有几个步骤" class="headerlink" title="4. draw方法 大概有几个步骤"></a>4. draw方法 大概有几个步骤</h3><blockquote>
+<ol>
+<li>drawbackground</li>
+<li>如果要视图显示渐变框，这里会做一些准备工作</li>
+<li>draw自身内容</li>
+<li>drawChild</li>
+<li>如果需要, 绘制当前视图在滑动时的边框渐变效果</li>
+<li>绘制装饰，如滚动条</li>
+</ol>
+</blockquote>
+<h3 id="5-怎么控制另外一个进程的View显示"><a href="#5-怎么控制另外一个进程的View显示" class="headerlink" title="5. 怎么控制另外一个进程的View显示"></a>5. 怎么控制另外一个进程的View显示</h3><blockquote>
+<p>RemoteView：RemoteViews实现了Parcelable接口，通过binder机制传递给远程进程，进程间view的显示</p>
+</blockquote>
+<h3 id="6-两指缩放"><a href="#6-两指缩放" class="headerlink" title="6. 两指缩放"></a>6. <a href="https://www.jianshu.com/p/0c863bbde8eb" target="_blank" rel="noopener">两指缩放</a></h3><blockquote>
+<ol>
+<li>为了解决多点触控问题，android在MotionEvent中引入了pointer概念</li>
+<li>通过ACTION_DOWN、ACTION_POINTER_DOWN、ACTION_MOVE、ACTION_POINTER_UP、ACTION_UP来检测手机的动作</li>
+<li>每个手指的位置可以通过getX（pointIndex）来获得，这样我们就能判断出滑动的距离</li>
+<li>缩放有多种实现： 1. ImageView可以通过setImageMatrix（martix）来实现 2. 自定义View可以缩放Canvas的大小 3. 还可以设置LayoutParams来改变大小</li>
+</ol>
+</blockquote>
+<h3 id="7-Scroller"><a href="#7-Scroller" class="headerlink" title="7. Scroller"></a>7. <a href="https://mp.weixin.qq.com/s?__biz=MzIwMzYwMTk1NA==&mid=2247484893&idx=1&sn=5874130932d4533064e40045055d0185&chksm=96cda490a1ba2d86491a65f34513e50b80a5d0ccbedae644225bc0a3d262505d43381b603310#rd" target="_blank" rel="noopener">Scroller</a></h3><blockquote>
+<ol>
+<li>Scroller 通常用来实现平滑的滚动</li>
+<li>实现平滑滚动：<ol>
+<li>新建Scroller，并设置合适的插值器</li>
+<li>在View的computeScroll方法中调用scroller，查看当前应该滑动到的位置，并调用view的scrollTo或者scrollBy方法滑动</li>
+<li>调用Scroller的start方法开始滑动</li>
+</ol>
+</li>
+</ol>
+</blockquote>
+<h3 id="8-ScrollView时候滑动到底部"><a href="#8-ScrollView时候滑动到底部" class="headerlink" title="8. ScrollView时候滑动到底部"></a>8. <a href="https://blog.csdn.net/wang2963973852/article/details/60135960" target="_blank" rel="noopener">ScrollView时候滑动到底部</a></h3><blockquote>
+<ol>
+<li>滑动时会调用onScrollChange方法，在该方法中监听状态</li>
+<li>判断childView.getMeasureHeight（总高度） == getScrollY（滑动的高度） + chilView.getHeight(可见高度)</li>
+</ol>
+</blockquote>
+<h3 id="9-View事件的分发"><a href="#9-View事件的分发" class="headerlink" title="9. View事件的分发"></a>9. <a href="https://www.jianshu.com/p/38015afcdb58" target="_blank" rel="noopener">View事件的分发</a></h3><blockquote>
+<ol>
+<li>思想：委托子View处理，子View不能处理则自己处理</li>
+<li>委托过程：activity -&gt; window -&gt; viewGroup -&gt; view</li>
+<li>处理事件方法的优先级：onTouchListener &gt; onTouchEvent &gt; onClickListener</li>
+</ol>
+</blockquote>
+<pre><code>伪代码
+public boolean dispatchTouchEvent(MotionEvent ev){
+boolean consume = false;
+if(onInterceptTouchEvent(ev)){
+  consume = onTouchEvent(ev)
+} else {
+  consume = child.dispatchTouchEvent(ev);
+}
+return consume;
+}
+
+复制代码</code></pre><blockquote>
+<ol>
+<li>完整的事件通常包括Down、Move、Up，当down事件被拦截下来以后，move和up就不再走intercept方法，而是直接被传递给当前view处理</li>
+</ol>
+</blockquote>
+<h3 id="10-什么时候执行ACTION-CANCEL"><a href="#10-什么时候执行ACTION-CANCEL" class="headerlink" title="10. 什么时候执行ACTION_CANCEL"></a>10. <a href="https://www.jianshu.com/p/8360d7150786" target="_blank" rel="noopener">什么时候执行ACTION_CANCEL</a></h3><blockquote>
+<ol>
+<li>一个点击或者活动事件包含ACTION_DOWN，ACTION_MOVE,ACTION_UP等</li>
+<li>当子View处理了ACTION_DOWN事件之后，后续的ACTION_MOVE,ACTION_UP都会直接交由这个子View处理</li>
+<li>如果此时父View拦截了ACTION_MOVE,ACTION_UP，那么子View会收到一个ACTION_CANCEL</li>
+<li>场景举例：点击一个控件，并滑动到控件外，此时次控件会收到一个ACTION_CALNCEL</li>
+</ol>
+</blockquote>
+<h3 id="11-滑动冲突"><a href="#11-滑动冲突" class="headerlink" title="11. 滑动冲突"></a>11. 滑动冲突</h3><blockquote>
+<p>外部拦截：重写onInterceptTouchEvent方法<br> 内部拦截：重写dispatchTouchEvent方法，同时配合requestDisAllowInterceptTouchEvent方法</p>
+</blockquote>
+<h3 id="12-ListView怎么优化（举例）"><a href="#12-ListView怎么优化（举例）" class="headerlink" title="12. ListView怎么优化（举例）"></a>12. <a href="https://www.jianshu.com/p/b7741023bc6f" target="_blank" rel="noopener">ListView怎么优化</a>（举例）</h3><blockquote>
+<ol>
+<li>复用convertView，对convetView进行判空，当convertView不为空时重复使用，为空则初始化，从而减少了很多不必要的View的创建、减少findViewById的次数，</li>
+<li>采用ViewHolder模式缓存item条目的引用</li>
+<li>避免在getview方法中做耗时操作</li>
+<li>避免使用半透明或者在活动中取消半透明</li>
+<li>图片异步加载，待滑动停止后再加载</li>
+<li>局部刷新</li>
+</ol>
+</blockquote>
+<h3 id="13-RecyclerView"><a href="#13-RecyclerView" class="headerlink" title="13. RecyclerView"></a>13. <a href="https://blog.csdn.net/xx326664162/article/details/61199895" target="_blank" rel="noopener">RecyclerView</a></h3><p>RecyclerView 与 ListView 类似，都是通过缓存view提高性能，但是RecyclerView有更高的可定制性。下面是使用时的一些设置，通过这些设置来达到对view样式的自定义：其中1、2是必须设置的，3、4可选</p>
+<blockquote>
+<ol>
+<li>想要控制其item们的排列方式，请使用布局管理器LayoutManager</li>
+<li>如果要创建一个适配器，请使用RecyclerView.Adapter （Adapter通过范型的方式，帮助我们生成ViewHolder）</li>
+<li>想要控制Item间的间隔，请使用RecyclerView.ItemDecoration</li>
+<li>想要控制Item增删的动画，请使用RecyclerView.ItemAnimator<br> 扩展：RecyclerView可以很方便的进行局部刷新（notifyItemChanged（））</li>
+</ol>
+</blockquote>
+<h3 id="14-RecyclerView绘制流程"><a href="#14-RecyclerView绘制流程" class="headerlink" title="14. RecyclerView绘制流程"></a>14. <a href="https://blog.csdn.net/hfyd_/article/details/53910631?_t_t_t=0.81394347618334" target="_blank" rel="noopener">RecyclerView绘制流程</a></h3><blockquote>
+<p>RecyclerView的Measure和Layout是委托LayoutManager进行的</p>
+</blockquote>
+<h3 id="15-RecyclerView的局部刷新"><a href="#15-RecyclerView的局部刷新" class="headerlink" title="15. RecyclerView的局部刷新"></a>15. RecyclerView的局部刷新</h3><blockquote>
+<ol>
+<li>调用notifyItemChange方法</li>
+<li>如果想刷新某个item的局部，可以有两种方法<ol>
+<li><a href="https://blog.csdn.net/jdsjlzx/article/details/52893469" target="_blank" rel="noopener">notifyItemRangeChanged方法</a></li>
+<li><a href="https://www.jianshu.com/p/c5ca75d3a78c" target="_blank" rel="noopener">根据position获取对应的ViewHolder，更新其View</a></li>
+</ol>
+</li>
+</ol>
+</blockquote>
+<h3 id="16-RecyclerView的缓存"><a href="#16-RecyclerView的缓存" class="headerlink" title="16. RecyclerView的缓存"></a>16. <a href="https://zhuanlan.zhihu.com/p/23339185" target="_blank" rel="noopener">RecyclerView的缓存</a></h3><blockquote>
+<ol>
+<li>RecyclerView采用四级缓存，ListView采用两级缓存</li>
+<li>四级缓存:<ol>
+<li>mAttachedScrap：用于屏幕内的itemView快速复用，不需要create和bind</li>
+<li>mCacheViews：用于屏幕外的itemView快速复用，默认为两个，通过postion查找，不需要create和bind</li>
+<li>mViewCacheExtentsion：需要用户定制，默认不实现</li>
+<li>mRecyclerPool：默认上限5个；不需要create，需要bind；多个RecyclerView可以共用一个pool</li>
+</ol>
+</li>
+<li>总结：缓存方面和ListView最大区别是mCacheViews可以缓存屏幕外的item，并且不需要重新bind</li>
+</ol>
+</blockquote>
+<h3 id="17-RecyclerView-自定义LayoutManager"><a href="#17-RecyclerView-自定义LayoutManager" class="headerlink" title="17. RecyclerView 自定义LayoutManager"></a>17. <a href="https://blog.csdn.net/qibin0506/article/details/52676670" target="_blank" rel="noopener">RecyclerView 自定义LayoutManager</a></h3><blockquote>
+<ol>
+<li>重写onLayoutChildren方法<ol>
+<li>调用detachAndScrapAttachedViews方法，缓存View</li>
+<li>计算并设置每个children的位置</li>
+<li>调用fill方法</li>
+</ol>
+</li>
+<li>重写fill方法进行布局</li>
+<li>重写canScrollVertically和scrollVerticallyBy方法，支持滑动</li>
+</ol>
+</blockquote>
+<h3 id="18-SurfaceView与View的区别"><a href="#18-SurfaceView与View的区别" class="headerlink" title="18. SurfaceView与View的区别"></a>18. <a href="https://blog.csdn.net/Picasso_L/article/details/49817725" target="_blank" rel="noopener">SurfaceView</a>与View的区别</h3><blockquote>
+<ol>
+<li>View主要适用于主动更新的情况下，而SurfaceView主要适用于被动更新，例如频繁地刷新；</li>
+<li>View在主线程中对画面进行刷新，而SurfaceView通常会通过一个子线程来进行页面刷新</li>
+<li>而SurfaceView在底层实现机制中就已经实现了<a href="https://bbs.csdn.net/topics/390834677" target="_blank" rel="noopener">双缓冲机制</a></li>
+</ol>
+</blockquote>
+<h3 id="19-view-的布局"><a href="#19-view-的布局" class="headerlink" title="19. view 的布局"></a>19. view 的布局</h3><p>布局全都继承自ViewGroup</p>
+<blockquote>
+<ol>
+<li>FrameLayout(框架布局) ：没有对child view的摆布进行控制，这个布局中所有的控件都会默认出现在视图的左上角。</li>
+<li>LinearLayout(线性布局)：横向或竖向排列内部View</li>
+<li>RelativeLayout(相对布局)：以view的相对位置进行布局</li>
+<li>TableLayout（表格布局）：将子元素的位置分配到行或列中，一个TableLayout由许多的TableRow组成</li>
+<li>GridLayout:和TableLayout类似</li>
+<li>ConstraintLayout（约束布局）：和RelativeLayout类似，还可以通过GuideLine辅助布局，适合图形化操作<strong>推荐使用</strong></li>
+<li>AbsoluteLayout（绝对布局）：已经被废弃</li>
+</ol>
+</blockquote>
+<h3 id="20-线性布局-相对布局-效率哪个高"><a href="#20-线性布局-相对布局-效率哪个高" class="headerlink" title="20. 线性布局 相对布局 效率哪个高"></a>20. <a href="https://www.jianshu.com/p/8a7d059da746" target="_blank" rel="noopener">线性布局 相对布局 效率哪个高</a></h3><blockquote>
+<p>相同层次下，因为相对布局会调用两次measure，所以线性高 当层次较多时，建议使用相对布局</p>
+</blockquote>
+<h3 id="21-View-的invalidate-postInvalidate-requestLayout方法"><a href="#21-View-的invalidate-postInvalidate-requestLayout方法" class="headerlink" title="21. View 的invalidate\postInvalidate\requestLayout方法"></a>21. View 的invalidate\postInvalidate\requestLayout方法</h3><blockquote>
+<ol>
+<li>invalidate 会调用onDraw进行重绘，只能在主线程</li>
+<li>postInvalidate 可以在其他线程</li>
+<li>requestLayout会调用onLayout和onMeasure，不一定会调用onDraw</li>
+</ol>
+</blockquote>
+<h3 id="22-更新UI方式"><a href="#22-更新UI方式" class="headerlink" title="22. 更新UI方式"></a>22. 更新UI方式</h3><blockquote>
+<ol>
+<li>Activity.runOnUiThread(Runnable)</li>
+<li>View.post(Runnable),View.postDelay(Runnable,long)</li>
+<li>Handler</li>
+</ol>
+</blockquote>
+<h3 id="23-postDelayed原理"><a href="#23-postDelayed原理" class="headerlink" title="23. postDelayed原理"></a>23. <a href="https://blog.csdn.net/qingtiantianqing/article/details/72783952" target="_blank" rel="noopener">postDelayed原理</a></h3><blockquote>
+<ol>
+<li>不管是view的postDelayed方法，还是Handler的post方法，通过包装后最终都会走Handler的sendMessageAtTime方法</li>
+<li>随后会通过MessageQueue的enqueueMessage方法将message加入队列，加入时按时间排序，我们可以理解成Message是一个有序队列，时间是其排序依据</li>
+<li>当Looper从MessageQueue中调用next方法取出message时，如果还没有到时间，就会阻塞等待</li>
+<li>2中当有新的message加完成后，会检查当前有没有3中设置的阻塞，需不需要唤起，如果需要唤起则唤起</li>
+</ol>
+</blockquote>
+<h3 id="24-当一个TextView的实例调用setText-方法后执行了什么"><a href="#24-当一个TextView的实例调用setText-方法后执行了什么" class="headerlink" title="24. 当一个TextView的实例调用setText()方法后执行了什么"></a>24. 当一个TextView的实例调用setText()方法后执行了什么</h3><blockquote>
+<ol>
+<li>setText后会对text做一些处理，如设置AutoLink，Ellipsize等</li>
+<li>在合适的位置调用TextChangeListener</li>
+<li>调用requestLayout和invalidate方法</li>
+</ol>
+</blockquote>
+<h3 id="25-自定义View执行invalidate-方法-为什么有时候不会回调onDraw"><a href="#25-自定义View执行invalidate-方法-为什么有时候不会回调onDraw" class="headerlink" title="25. 自定义View执行invalidate()方法,为什么有时候不会回调onDraw()"></a>25. 自定义View执行invalidate()方法,为什么有时候不会回调onDraw()</h3><blockquote>
+<ol>
+<li>View 的draw方法会根据很多标识位来决定是否需要调用onDraw，包括是否绑定在当前窗口等</li>
+</ol>
+</blockquote>
+<h3 id="26-View-的生命周期"><a href="#26-View-的生命周期" class="headerlink" title="26. View 的生命周期"></a>26. <a href="https://www.jianshu.com/p/08e6dab7886e" target="_blank" rel="noopener">View 的生命周期</a></h3><blockquote>
+<ol>
+<li>构造方法</li>
+<li>onFinishInflate：该方法当View及其子View从XML文件中加载完成后会被调用。</li>
+<li>onVisibilityChanged</li>
+<li>onAttachedToWindow</li>
+<li>onMeasure</li>
+<li>onSizeChanged</li>
+<li>onLayout</li>
+<li>onDraw</li>
+<li>onWindowFocusChanged</li>
+<li>onWindowVisibilityChanged</li>
+<li>onDetachedFromWindow</li>
+</ol>
+</blockquote>
+<h3 id="27-ListView针对多种item的缓存是如何实现的"><a href="#27-ListView针对多种item的缓存是如何实现的" class="headerlink" title="27. ListView针对多种item的缓存是如何实现的"></a>27. <a href="https://www.cnblogs.com/wangzehuaw/p/5383600.html" target="_blank" rel="noopener">ListView针对多种item的缓存是如何实现的</a></h3><blockquote>
+<ol>
+<li>维护一个缓存view的数组，数组长度是 adapter的getViewItemTypeCount</li>
+<li>通过getItemViewType获得缓存view 的数组，取出缓存的view</li>
+</ol>
+</blockquote>
+<h3 id="28-Canvas-save-跟Canvas-restore-的调用时机"><a href="#28-Canvas-save-跟Canvas-restore-的调用时机" class="headerlink" title="28. Canvas.save()跟Canvas.restore()的调用时机"></a>28. <a href="https://blog.csdn.net/u014788227/article/details/52250208" target="_blank" rel="noopener">Canvas.save()跟Canvas.restore()的调用时机</a></h3><blockquote>
+<p>save：用来保存Canvas的状态。save之后，可以调用Canvas的平移、放缩、旋转、错切、裁剪等操作。 restore：用来恢复Canvas之前保存的状态。防止save后对Canvas执行的操作对后续的绘制有影响。</p>
+</blockquote>
+<h2 id="WebView"><a href="#WebView" class="headerlink" title="WebView"></a>WebView</h2><hr>
+<h3 id="0-WebView-优化"><a href="#0-WebView-优化" class="headerlink" title="0. WebView 优化"></a>0. <a href="https://www.jianshu.com/p/95d4d73be3d1" target="_blank" rel="noopener">WebView 优化</a></h3><blockquote>
+<ol>
+<li>替换内核：不同的rom厂商对webview的优化不同，可能出现兼容性和速度问题，可以替换成X5内核等来解决兼容性问题，同时提高加载速度</li>
+<li>WebView初始化提前：WebView初始化是一个耗时的过程，我们可以预先将WebView初始化好，例如使用全局webview</li>
+<li>开启缓存，可以明显提升第二次加载的速度</li>
+<li>优化dns解析速度：使用和api一样的域名，这样dns不用二次解析，可以提高速度</li>
+<li>预加载：将需要的文件资源通过native方法提前加载好或者打包进apk，需要使用时直接使用</li>
+<li>延迟加载：延迟加载部分资源，在界面要显示的数据加载完成后再加载，如图片资源，js等</li>
+<li>对于webview内存泄漏：单独开一个进程，Activity销毁时手动回收资源</li>
+</ol>
+</blockquote>
+<h3 id="1-WebView与Native交互"><a href="#1-WebView与Native交互" class="headerlink" title="1. WebView与Native交互"></a>1. WebView与Native交互</h3><blockquote>
+<ol>
+<li><p>WebView中拦截网址：设置setWebViewClient，重写shouldOverrideUrlLoading</p>
+</li>
+<li><p>js与native交互</p>
+<p>：</p>
+<ol>
+<li>mWebView.getSettings().setJavaScriptEnabled(true);</li>
+<li>mWebView.addJavascriptInterface(new JSInterface(), “jsInterface”);</li>
+<li>其他js调用Native方案：通过prompt, alert等，在webClient中重写拦截相应的方法</li>
+</ol>
+</li>
+</ol>
+</blockquote>
+<h2 id="性能相关"><a href="#性能相关" class="headerlink" title="性能相关"></a>性能相关</h2><hr>
+<h3 id="0-Android中ViewHolder，Handler等为什么要被声明成静态内部类（static）"><a href="#0-Android中ViewHolder，Handler等为什么要被声明成静态内部类（static）" class="headerlink" title="0. Android中ViewHolder，Handler等为什么要被声明成静态内部类（static）"></a>0. <a href="https://juejin.im/post/5a951f615188257a61326473" target="_blank" rel="noopener">Android中ViewHolder，Handler等为什么要被声明成静态内部类（static）</a></h3><blockquote>
+<p>非静态内部类会持有外部类的引用，在一些情况下很可能造成内存泄漏，所以一般声明为静态内部类，但并不是说一定要生命成静态内部类。</p>
+</blockquote>
+<h3 id="1-Android中捕获-App崩溃和重启"><a href="#1-Android中捕获-App崩溃和重启" class="headerlink" title="1. Android中捕获 App崩溃和重启"></a>1. <a href="https://blog.csdn.net/jiaweihaoku/article/details/78053403" target="_blank" rel="noopener">Android中捕获 App崩溃和重启</a></h3><blockquote>
+<ol>
+<li>实现Thread.UncaughtExceptionHandler()接口，在uncaughtException方法中完成对崩溃的上报和对App的重启。</li>
+<li>实现自定义Application，并在Application中注册1中Handler实例。</li>
+</ol>
+</blockquote>
+<h3 id="2-LruCache实现原理"><a href="#2-LruCache实现原理" class="headerlink" title="2. LruCache实现原理"></a>2. <a href="https://www.cnblogs.com/tianzhijiexian/p/4248677.html" target="_blank" rel="noopener">LruCache实现原理</a></h3><blockquote>
+<p>最近最少使用算法：内部通过LinkedHashMap来实现</p>
+</blockquote>
+<h3 id="3-Parcelable和Serializable"><a href="#3-Parcelable和Serializable" class="headerlink" title="3. Parcelable和Serializable"></a>3. Parcelable和Serializable</h3><blockquote>
+<ol>
+<li>都是序列化的方式</li>
+<li>Serializable只需实现Serializable接口即可</li>
+<li>Parcelable需要实现Parcelable接口，并重写writeToParcel和describeContents方法，并且实现一个Creator</li>
+<li>Serializable虽然操作简单，但是需要大量IO操作，效率慢；Parcelable自已实现封送和解封（marshalled &amp;unmarshalled）操作不需要用反射，数据也存放在Native内存中，效率要快很多，在Android中更推荐使用Parcelable</li>
+<li>由于不同版本Parcelable可能存在不同，在网络和磁盘存储时，推荐使用Parcelable</li>
+</ol>
+</blockquote>
+<h3 id="4-加载合适比例的Bitmap到内存中"><a href="#4-加载合适比例的Bitmap到内存中" class="headerlink" title="4. 加载合适比例的Bitmap到内存中"></a>4. 加载合适比例的Bitmap到内存中</h3><pre><code>public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId,
+        int reqWidth, int reqHeight) {
+
+    // 首先只解析图片资源的边界
+    final BitmapFactory.Options options = new BitmapFactory.Options();
+    options.inJustDecodeBounds = true;
+    BitmapFactory.decodeResource(res, resId, options);
+
+    //计算缩放值
+    options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+
+    // 用计算出来的缩放值解析图片
+    options.inJustDecodeBounds = false;
+    return BitmapFactory.decodeResource(res, resId, options);
+}
+
+
+public static int calculateInSampleSize(
+            BitmapFactory.Options options, int reqWidth, int reqHeight) {
+    // Raw height and width of image
+    final int height = options.outHeight;
+    final int width = options.outWidth;
+    int inSampleSize = 1;
+
+    if (height &gt; reqHeight || width &gt; reqWidth) {
+
+        final int halfHeight = height / 2;
+        final int halfWidth = width / 2;
+
+        // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+        // height and width larger than the requested height and width.
+        while ((halfHeight / inSampleSize) &gt; reqHeight
+                &amp;&amp; (halfWidth / inSampleSize) &gt; reqWidth) {
+            inSampleSize *= 2;
+        }
+    }
+
+    return inSampleSize;
+}
+
+复制代码</code></pre><h3 id="5-图片的三级缓存"><a href="#5-图片的三级缓存" class="headerlink" title="5. 图片的三级缓存"></a>5. <a href="https://www.jianshu.com/p/2cd59a79ed4a" target="_blank" rel="noopener">图片的三级缓存</a></h3><blockquote>
+<ol>
+<li>首次加载 Android App 时，肯定要通过网络交互来获取图片，之后我们可以将图片保存至本地SD卡和内存中</li>
+<li>之后运行 App 时，优先访问内存中的图片缓存</li>
+<li>若内存中没有，则加载本地SD卡中的图片</li>
+</ol>
+</blockquote>
+<h3 id="6-App保活"><a href="#6-App保活" class="headerlink" title="6. App保活"></a>6. <a href="https://segmentfault.com/a/1190000006251859" target="_blank" rel="noopener">App保活</a></h3><p>随着Google对Android系统的更新，以及国内厂商堆Room的定制，一些保活的手段已经失效或者不再适用，这里列举一些保活手段,实际中常常是多个方式并用</p>
+<blockquote>
+<ol>
+<li>联系Room厂商加入白名单（或者引导用户手动加入白名单）</li>
+<li>利用系统漏洞root进行提权，或者直接把本应用变成系统应用</li>
+<li>Service设置成START_STICKY:kill 后会被重启（等待5秒左右），重传Intent，保持与重启前一样</li>
+<li>提升service优先级:通过android:priority = “1000”这个属性设置最高优先级（可能已经失效）</li>
+<li>onDestroy方法里重启service（效果不好）</li>
+<li>监听广播（除了监听系统广播外，还可以利用友盟等第三方sdk做到应用相互唤起）</li>
+<li>启动两个进程service相互监听，互相唤起（大部分room上失效）</li>
+<li>在屏幕上保留1像素</li>
+<li>注册系统同步服务</li>
+<li>创建Native进程，双进程互相监听保活（5.0 以上失效）</li>
+<li>利用JobSheduler保活</li>
+</ol>
+</blockquote>
+<h3 id="7-如何判断APP被强杀"><a href="#7-如何判断APP被强杀" class="headerlink" title="7. 如何判断APP被强杀"></a>7. 如何判断APP被强杀</h3><blockquote>
+<p><a href="https://www.jianshu.com/p/bce1164b83d8" target="_blank" rel="noopener">这里所说的强杀场景如这篇文章</a></p>
+<ol>
+<li>在Application中定义一个static常量，赋值为－1</li>
+<li>在欢迎界面改为0</li>
+<li>在BaseActivity判断该常量的值</li>
+</ol>
+</blockquote>
+<h3 id="8-常见的内存泄漏（举例）"><a href="#8-常见的内存泄漏（举例）" class="headerlink" title="8. 常见的内存泄漏（举例）"></a>8. 常见的内存泄漏（举例）</h3><blockquote>
+<ol>
+<li>不恰当的使用static变量（或者向static集合中添加数据却忘了必要时移除数据）</li>
+<li>忘记关闭各种连接，如IO流等</li>
+<li><a href="https://github.com/francistao/LearningNotes/blob/master/Part1/Android/Handler内存泄漏分析及解决.md" target="_blank" rel="noopener">不恰当的内部类</a>：因为内部类持有外部类的引用，当内部类存活时间较长时，导致外部类也不能正确的回收（常发生在使用Handler的时候）</li>
+<li>不恰当的单例模式：例如错误的将某个Activity给单例持有，或者在不该使用单例的地方使用了单例</li>
+<li>使用错误的Context：Application 和 Activity的context生命周期不一样</li>
+<li>webview造成的内存泄漏</li>
+</ol>
+</blockquote>
+<h3 id="9-OOM异常是否可以被try…catch捕获"><a href="#9-OOM异常是否可以被try…catch捕获" class="headerlink" title="9. OOM异常是否可以被try…catch捕获"></a>9. OOM异常是否可以被try…catch捕获</h3><blockquote>
+<ol>
+<li>在发生地点可以捕获</li>
+<li>但是OOM往往是由于内存泄漏造成的，泄漏的部分多数情况下不在try语句块里，所以catch后不久就会再次发生OOM</li>
+<li>对待OOM的方案应该是找到内存泄漏的地方以及优化内存的占用</li>
+</ol>
+</blockquote>
+<h3 id="10-什么是ANR，如何避免它"><a href="#10-什么是ANR，如何避免它" class="headerlink" title="10. 什么是ANR，如何避免它"></a>10. <a href="https://blog.csdn.net/a332324956/article/details/77800315" target="_blank" rel="noopener">什么是ANR，如何避免它</a></h3><blockquote>
+<ol>
+<li>ANR是Application Not Responding 的缩写,当应用程序无响应时，会弹出ANR窗口，让用户选择继续等待还是关闭应用。</li>
+<li>处理超过时间会造成ANR的地方：触摸操作等（5s）；BroadCast（10s）；Service（20s）</li>
+<li>避免：不要在主线程中做耗时操作</li>
+</ol>
+</blockquote>
+<h3 id="11-什么情况会导致Force-Close-？如何避免？能否捕获导致其的异常？"><a href="#11-什么情况会导致Force-Close-？如何避免？能否捕获导致其的异常？" class="headerlink" title="11. 什么情况会导致Force Close ？如何避免？能否捕获导致其的异常？"></a>11. 什么情况会导致Force Close ？如何避免？能否捕获导致其的异常？</h3><blockquote>
+<ol>
+<li>出现运行时异常（如nullpointer/数组越界等），而我们又没有try catch捕获，可能造成Force Close</li>
+<li>避免：需要我们在编程时谨慎处理逻辑，提高代码健壮性。如对网络传过来的未知数据先判空，再处理；此外还可以通过静态代码检查来帮助我们提高代码质量</li>
+<li>此外，我们还可以在Application初始化时注册<a href="https://www.jianshu.com/p/84eba8efa45e" target="_blank" rel="noopener">UncaultExceptionHandler</a>，来捕捉这些异常重启我们的程序</li>
+</ol>
+</blockquote>
+<h3 id="12-DDMS和TraceView"><a href="#12-DDMS和TraceView" class="headerlink" title="12. DDMS和TraceView"></a>12. DDMS和TraceView</h3><blockquote>
+<ol>
+<li>DDMS是一个程序执行查看器，在里面可以看见线程和堆栈等信息</li>
+<li>TraceView是一个性能分析器<br> 扩展： Android Studio 3 中用Profiler代替了DDMS，可以监视分析CPU，网络，内存的实时情况，更加方便</li>
+</ol>
+</blockquote>
+<h3 id="13-LRUCache原理"><a href="#13-LRUCache原理" class="headerlink" title="13. LRUCache原理"></a>13. LRUCache原理</h3><blockquote>
+<ol>
+<li>通过LinkedHashMap实现的</li>
+<li>LinkedHashMap的特性：LinkedHashMap是一个双向链表，当构造函数中accessOrder为true时：调用put()方法，会在集合头部添加元素时，会调用trimToSize()判断缓存是否已满，如果满了就用LinkedHashMap的迭代器删除队尾元素，即近期最少访问的元素。当调用get()方法访问缓存对象时，就会调用LinkedHashMap的get()方法获得对应集合元素，同时会更新该元素到队头</li>
+</ol>
+</blockquote>
+<h3 id="14-模块化的好处"><a href="#14-模块化的好处" class="headerlink" title="14. 模块化的好处"></a>14. 模块化的好处</h3><blockquote>
+<ol>
+<li>不同模块间解偶，方便复用</li>
+<li>单个模块支持独立编译，并行开发，提高开发和测试效率</li>
+</ol>
+</blockquote>
+<h3 id="15-组件化"><a href="#15-组件化" class="headerlink" title="15. 组件化"></a>15. 组件化</h3><blockquote>
+<ol>
+<li>组件化是已复用为目的的</li>
+<li>多个团队可能公用一个组件</li>
+</ol>
+</blockquote>
+<h3 id="16-SparseArray"><a href="#16-SparseArray" class="headerlink" title="16. SparseArray"></a>16. SparseArray</h3><blockquote>
+<ol>
+<li>SparseArray通过两个数组实现，key为int型，value为Object型</li>
+<li>适用于数据量较小时</li>
+<li>通过二分法插入和删除数据</li>
+</ol>
+</blockquote>
+<h3 id="17-APP启动耗时"><a href="#17-APP启动耗时" class="headerlink" title="17. APP启动耗时"></a>17. <a href="https://www.jianshu.com/p/c967653a9468" target="_blank" rel="noopener">APP启动耗时</a></h3><blockquote>
+<ol>
+<li>启动分为冷启动（包含初始化Application）和热启动，冷启动又可以分为第一次启动（会有额外的初始化数据库等操作）和不是第一次启动</li>
+<li>开发时本地可以用adb命令获取启动时常：adb shell am start -w packagename/activity</li>
+<li>线上可以在各个关键地方埋点统计时常</li>
+</ol>
+</blockquote>
+<h3 id="18-Android启动优化"><a href="#18-Android启动优化" class="headerlink" title="18. Android启动优化"></a>18. <a href="https://www.jianshu.com/p/f5514b1a826c" target="_blank" rel="noopener">Android启动优化</a></h3><blockquote>
+<ol>
+<li>启动优化的目的是提高用户感知的启动速度</li>
+<li>可以采用TraceView等分析耗时，找出优化方向</li>
+<li>优化的思路：<ol>
+<li>利用提前展示出来的Window，设置Theme，快速展示出来一个界面，给用户快速反馈的体验（启动后再改变回来）</li>
+<li>异步初始化一些第三方SDK</li>
+<li>延迟初始化</li>
+<li>针对性的优化算法，减少耗时</li>
+</ol>
+</li>
+</ol>
+</blockquote>
+<h3 id="19-性能调优"><a href="#19-性能调优" class="headerlink" title="19. 性能调优"></a>19. <a href="http://www.trinea.cn/android/performance/" target="_blank" rel="noopener">性能调优</a></h3><blockquote>
+<ol>
+<li>性能调优包括很多方面：包括代码执行效率、网络、布局、内存、数据库、业务逻辑，打包速度等</li>
+<li>需要针对具体问题具体分析，找到性能瓶颈：</li>
+<li>善于借助工具，例如使用traceview跟踪，或者打点统计，profiler，leak canary等</li>
+</ol>
+</blockquote>
+<h4 id="网络优化："><a href="#网络优化：" class="headerlink" title="网络优化："></a><a href="http://www.trinea.cn/android/mobile-performance-optimization/" target="_blank" rel="noopener">网络优化</a>：</h4><blockquote>
+<ol>
+<li>不用域名,用ip直连</li>
+<li>请求合并与拆分</li>
+<li>请求数据的缩小：删除无用数据，开启Gzip压缩</li>
+<li>精简的数据格式：json/webp/根据设备和网络环境的不同采用不同分辨率图片</li>
+<li>数据缓存</li>
+<li>预加载</li>
+<li>连接的复用：使用http2.0 (效率提升30%)<br> 扩展：<a href="https://mp.weixin.qq.com/s/N16jX2zRT3mlaJF4ixDhMg" target="_blank" rel="noopener">JD Android客户端网络性能调优之HTTP/2协议升级 </a></li>
+</ol>
+</blockquote>
+<h4 id="布局优化"><a href="#布局优化" class="headerlink" title="布局优化"></a><a href="http://www.trinea.cn/android/layout-performance/" target="_blank" rel="noopener">布局优化</a></h4><blockquote>
+<ol>
+<li>合理的使用include/merge/viewstub等</li>
+<li>减少布局层次，减少不必要的view和节点</li>
+<li>使用布局缓存，避免重复inflate<br> 其他：可以用hierarchy viewer等工具进行分析</li>
+</ol>
+</blockquote>
+<h4 id="代码优化"><a href="#代码优化" class="headerlink" title="代码优化"></a><a href="http://www.trinea.cn/android/java-android-performance/" target="_blank" rel="noopener">代码优化</a></h4><blockquote>
+<ol>
+<li>降低执行时间：如优化算法和数据结构/利用多线程/缓存(包括对象缓存、线程池、IO 缓存、网络缓存等)/JNI/需求优化</li>
+<li>同步改异步：例如使用surfaceview</li>
+<li>错峰：提前或者延迟操作，比如启动中第三方sdk的加载</li>
+</ol>
+</blockquote>
+<h4 id="APK瘦身"><a href="#APK瘦身" class="headerlink" title="APK瘦身"></a><a href="https://blog.csdn.net/vfush/article/details/52266843" target="_blank" rel="noopener">APK瘦身</a></h4><blockquote>
+<ol>
+<li>分析APK<ol>
+<li>使用Android Studio的分析器分析apk结构</li>
+<li>使用lint分析无用代码和资源</li>
+<li>或者使用第三方工具，如NimbleDroid/ClassShark</li>
+</ol>
+</li>
+<li>删除无用资源<ol>
+<li>对无用资源和代码删除</li>
+<li>优化结构，对重复资源去重</li>
+<li>对依赖去重，依赖多个功能类似的sdk时，只保留一个</li>
+<li>去除不需要的依赖，如语言support包可能包含多种语言，配置只保留我们需要的资源等</li>
+<li>开启gradle的ProGuard/Code shrinking/minifyEnabled等，自动去除不需要的资源和代码】</li>
+</ol>
+</li>
+<li>压缩已用资源<ol>
+<li>选取适当的图片格式，如webp</li>
+<li>对图片进行压缩</li>
+<li>选取合适的依赖包，而不是直接依赖V7包等</li>
+<li>使用微信的打包插件AndResGuard对图片进行压缩</li>
+<li>使用facebook的ReDex对dex文件进行压缩</li>
+</ol>
+</li>
+<li>通过网络按需加载</li>
+</ol>
+</blockquote>
+<h3 id="20-有什么提高编译速度的方法"><a href="#20-有什么提高编译速度的方法" class="headerlink" title="20. 有什么提高编译速度的方法"></a>20. 有什么提高编译速度的方法</h3><blockquote>
+<ol>
+<li>提高电脑配置</li>
+<li>优化Android studio配置<ol>
+<li>加大内存；</li>
+<li>使用守护进程；</li>
+<li>开启instant Run</li>
+<li>使用离线gradle</li>
+<li>使用新版的gradle</li>
+</ol>
+</li>
+<li>优化项目<ol>
+<li>使用第三方编译如[阿里的Freeline](<a href="https://www.freelinebuild.com/docs/zh_cn/###" target="_blank" rel="noopener">https://www.freelinebuild.com/docs/zh_cn/###</a></li>
+<li>debug模式下可以不开启混淆等</li>
+<li><a href="http://stormzhang.com/android/2015/03/01/android-reference-local-aar/" target="_blank" rel="noopener">模块化</a>，多模块时使用aar包避免反复编译</li>
+</ol>
+</li>
+</ol>
+</blockquote>
+<h3 id="21-延迟加载的实现"><a href="#21-延迟加载的实现" class="headerlink" title="21. 延迟加载的实现"></a>21. <a href="https://www.jianshu.com/p/a0e242d57360" target="_blank" rel="noopener">延迟加载的实现</a></h3><blockquote>
+<ol>
+<li>myHandler.postDelayed(mLoadingRunnable, DEALY_TIME);</li>
+<li></li>
+</ol>
+</blockquote>
+<pre><code> getWindow().getDecorView().post(new Runnable() {
+    @Override
+   public void run() {
+        myHandler.post(mLoadingRunnable);
+   }
+  });
+复制代码</code></pre><blockquote>
+<ol>
+<li><a href="https://www.jianshu.com/p/545cf65c4f5e" target="_blank" rel="noopener">监听MessageQueue，当空闲时执行任务</a></li>
+</ol>
+</blockquote>
+<pre><code> // 拿到主线程的MessageQueue
+ Looper.myQueue().addIdleHandler(new MessageQueue.IdleHandler() { 
+      @Override public boolean queueIdle() { 
+           // 在这里去处理你想延时加载的东西 
+           delayLoad(); 
+
+           // 最后返回false，后续不用再监听了。
+           return false; 
+           } 
+  });
+
+复制代码</code></pre><h3 id="22-ArrayMap"><a href="#22-ArrayMap" class="headerlink" title="22. ArrayMap"></a>22. <a href="https://www.jianshu.com/p/ba65a0aeec44" target="_blank" rel="noopener">ArrayMap</a></h3><blockquote>
+<ol>
+<li>ArrayMap 是Android中的一种用时间换空间的容器，用来替代HashMap</li>
+<li>不适合大量数据或者有大量删除</li>
+<li>采用二分查找</li>
+<li>原理： 0. 使用两个数组进行存储<ol>
+<li>数组1储存key的HashCode</li>
+<li>数组2储存key和value；value位置为key位置左移1位再加1</li>
+<li>hash冲突的解决：寻找下一个空位，因为查询时会比较hashcode和key，所以不会有问题</li>
+</ol>
+</li>
+</ol>
+</blockquote>
+<h2 id="系统实现及原理"><a href="#系统实现及原理" class="headerlink" title="系统实现及原理"></a>系统实现及原理</h2><hr>
+<h3 id="0-AsyncTask"><a href="#0-AsyncTask" class="headerlink" title="0. AsyncTask"></a>0. AsyncTask</h3><blockquote>
+<ol>
+<li>为我们封装了thread和handler，并在内部实现了线程池，是一个轻量级的线程方案</li>
+<li>缺点：不同版本实现方式可能不一样，例如线程池有可能是串行的（最新版本是并行的）</li>
+<li>缺点：可定制化程度不高，例如我们不能很方便地cancel线程</li>
+</ol>
+</blockquote>
+<h3 id="1-AsyncTask是顺序执行么，for循环中执行200次new-AsyncTask并execute，会有异常吗"><a href="#1-AsyncTask是顺序执行么，for循环中执行200次new-AsyncTask并execute，会有异常吗" class="headerlink" title="1. AsyncTask是顺序执行么，for循环中执行200次new AsyncTask并execute，会有异常吗"></a>1. <a href="https://www.jianshu.com/p/79cc3c5fc9a3" target="_blank" rel="noopener">AsyncTask是顺序执行么</a>，for循环中执行200次new AsyncTask并execute，会有异常吗</h3><blockquote>
+<ol>
+<li>不同版本的AsyncTask 不一样，最新版本中是串行的</li>
+<li>不会，因为串行执行时用的是一个ArrayDeque来存放Runnable</li>
+<li>扩展：AsyncTask内部有并行的ThreadPoolExecutor，储存队列用的是LinkedBlockingQueue，大小是128；如果我们并行执行，会抛出运行时异常</li>
+</ol>
+</blockquote>
+<h3 id="2-Android-渲染机制"><a href="#2-Android-渲染机制" class="headerlink" title="2. Android 渲染机制"></a>2. <a href="https://www.jianshu.com/p/1ef2a9e5aa91" target="_blank" rel="noopener">Android 渲染机制</a></h3><blockquote>
+<ol>
+<li>CPU对视图进行必要的计算：measure等</li>
+<li>通过OpenGL 将CPU 处理过的数据交给GPU</li>
+<li>GPU进行栅格化并存入缓存</li>
+<li>Android 系统每隔16.6ms发出一个垂直同步信号，通知渲染</li>
+</ol>
+</blockquote>
+<h3 id="3-Android中Application和Activity的Context对象的区别"><a href="#3-Android中Application和Activity的Context对象的区别" class="headerlink" title="3. Android中Application和Activity的Context对象的区别"></a>3. <a href="https://juejin.im/post/5a9514e25188257a865d9b5a" target="_blank" rel="noopener">Android中Application和Activity的Context对象的区别</a></h3><blockquote>
+<ol>
+<li>生命周期不一样</li>
+<li>Application 不能showDialog</li>
+<li>Application startActivity时必须new一个Task</li>
+<li>Application layoutInflate直接使用默认主题，可能与当前主题不一样</li>
+</ol>
+</blockquote>
+<h3 id="4-Zygote的启动过程"><a href="#4-Zygote的启动过程" class="headerlink" title="4. Zygote的启动过程"></a>4. <a href="https://www.jianshu.com/p/edeac788d60c" target="_blank" rel="noopener">Zygote的启动过程</a></h3><blockquote>
+<ol>
+<li>注册Zygote的socket监听端口，应用接收启动应用程序的消息</li>
+<li>调用preload()方法加载系统资源，包括预加载类，Framework资源等</li>
+<li>调用startSystemServer()方法启动SystemServer进程</li>
+<li>调用runSelectLoop()方法进入监听和接收消息循环</li>
+</ol>
+</blockquote>
+<h3 id="5-Handler、Looper、Message、MessageQueue"><a href="#5-Handler、Looper、Message、MessageQueue" class="headerlink" title="5. Handler、Looper、Message、MessageQueue"></a>5. <a href="https://blog.csdn.net/u012827296/article/details/51236614" target="_blank" rel="noopener">Handler、Looper、Message、MessageQueue</a></h3><p>它们的存在主要是为了线程间通信，通信的方式为：</p>
+<blockquote>
+<ol>
+<li>在线程中调用Looper.prepare方法，生成一个looper与当前线程绑定（在生成looper的过程中，其构造方法在其内部创建了一个MessageQueue）</li>
+<li>调用looper.loop方法，使当前线程循环读取MessageQueue中的message，并调用 msg.target.dispatchMessage方法，交由target处理（这里target是一个Handler实例）</li>
+<li>new 一个Handler，在创建Handler时，需要为他指定looper（若不指定则是当前线程的looper），Handler会取出looper中的MessageQueue也作为自己的MessageQueue。</li>
+<li>调用Handler的sendMessage方法发送Message信息（这个方法将Message的target设置成当前handler，并把它加入到MessageQueue中）</li>
+</ol>
+</blockquote>
+<h3 id="6-为什么主线程Looper-loop不会ANR"><a href="#6-为什么主线程Looper-loop不会ANR" class="headerlink" title="6. 为什么主线程Looper.loop不会ANR"></a>6. <a href="https://www.jianshu.com/p/cfe50b8b0a41" target="_blank" rel="noopener">为什么主线程Looper.loop不会ANR</a></h3><blockquote>
+<ol>
+<li>ANR是应用程序无响应，原因是有事件在主线程运行时间过长造成新的事件无法处理，或者当前事件运行时间太长</li>
+<li>Looper.loop会循环处理到来的Message，当MessageQueue为空是，线程处于阻塞状态，释放cpu资源</li>
+</ol>
+</blockquote>
+<h3 id="7-Messenger-和-AIDL"><a href="#7-Messenger-和-AIDL" class="headerlink" title="7. Messenger 和 AIDL"></a>7. <a href="https://blog.csdn.net/u011974987/article/details/51243539" target="_blank" rel="noopener">Messenger</a> 和 AIDL</h3><blockquote>
+<p>都是进城间通信的方式，AIDL使用Binder通信，Messenger通过AIDL实现</p>
+<p>Messenger原理：Handler内部持有一个IMessenger实例，IMssenger时一个aidl的接口，Messenger初始化时这个IMssenger实例也传给了Messenger</p>
+<p><a href="https://blog.csdn.net/jiwangkailai02/article/details/48098087" target="_blank" rel="noopener">区别</a>：1.Messenger是对AIDL的封装，使用简单；2.Messenger通过Handler处理传过来的Message，只能运行在一个线程中，我们在AIDL中可以运行多个线程；3.Messenger客户端调取服务方法的结果只能异步回调给客户端，AIDL可以同步回调</p>
+</blockquote>
+<h3 id="8-Binder"><a href="#8-Binder" class="headerlink" title="8. Binder"></a>8. <a href="https://www.jianshu.com/p/adaa1a39a274" target="_blank" rel="noopener">Binder</a></h3><p>瞎jj写点凑个数吧</p>
+<blockquote>
+<ol>
+<li>Binder是Android中的一种进程间通信方式</li>
+<li>Binder通信是通过驱动来实现的，原理是在内核空间中进行内存映射，以为只有一次内存拷贝，所以速度较快</li>
+<li>Binder会验证权限，鉴定UID/PID来验证身份，保证了进程通信的安全性</li>
+<li>系统的Service会想ServiceManager注册，使用时向ServiceManager获取</li>
+<li>Service/Client同ServiceManager通信的过程本身也是通过binder驱动实现的</li>
+<li>android中<a href="https://www.jianshu.com/p/04ad8a12d808" target="_blank" rel="noopener">Service</a>的bind通信是通过ActivityManagerService实现的</li>
+<li>Binder中的代理模式：<ol>
+<li>客户端代理对象和服务端实现统一接口</li>
+<li>客户端获取服务端的引用，如果位于同一进程，那么获取的是服务端本身，如果是不同进程，获取到的是服务端的代理</li>
+<li>通过代理请向服务端请求</li>
+<li>服务端接收请求并处理，返回给客户端</li>
+</ol>
+</li>
+</ol>
+</blockquote>
+<h3 id="9-AIDL"><a href="#9-AIDL" class="headerlink" title="9. AIDL"></a>9. <a href="https://blog.csdn.net/u011240877/article/details/72765136" target="_blank" rel="noopener">AIDL</a></h3><blockquote>
+<ol>
+<li>全称：Android Interface Define Language（Android接口定义语言）</li>
+<li>目的是为了进行进程间通信</li>
+<li>使用方式：定义aidl文件，编译器编译时会帮我们生成对应的JAVA代码；通过调用生成的java代码，来进行进程间通信</li>
+<li>原理：通过Binder方式进行通信</li>
+</ol>
+</blockquote>
+<h3 id="10-Window、WindowManager以及Activity"><a href="#10-Window、WindowManager以及Activity" class="headerlink" title="10. Window、WindowManager以及Activity"></a>10. <a href="https://blog.csdn.net/yhaolpz/article/details/68936932" target="_blank" rel="noopener">Window、WindowManager以及Activity</a></h3><blockquote>
+<ol>
+<li>Window 0. Window有三类：系统Window、应用Window、子Window<ol>
+<li>Window是接口，具体实现类是PhoneWindow</li>
+<li>Window 是一个抽象概念，我们并不能直接操作window</li>
+<li>Activity在创建的时候attach方法中会创建Window并使之与Activity关联</li>
+<li>Window中会创建Decorview，并通过ViewRootImpl与View交互</li>
+</ol>
+</li>
+<li>WindowManager 0. 在Activity启动时，handleResumeActivity方法中启动activity的时候，会将主窗口加入到WindowManager中<ol>
+<li>我们并不能直接操作window，而是通过WindowManager</li>
+<li>WindowManagerImpl是其实现类，他将view增删改的操作交给 WindowManagerGlobal处理</li>
+<li>WindowManagerGlobal 中会调用 ViewRootImpl的方法</li>
+<li>ViewRootImpl通过IWindowSession与WindowManagerService交互</li>
+</ol>
+</li>
+</ol>
+</blockquote>
+<h3 id="11-理解Window和WindowManager"><a href="#11-理解Window和WindowManager" class="headerlink" title="11. 理解Window和WindowManager"></a>11. 理解Window和WindowManager</h3><blockquote>
+<ol>
+<li>Window用于显示View和接收各种事件，Window有三种类型：应用Window(每个Activity对应一个Window)、子Window(不能单独存在，附属于特定Window)、系统window(Toast和状态栏)</li>
+<li>Window分层级，应用Window在1-99、子Window在1000-1999、系统Window在2000-2999.WindowManager提供了增删改View三个功能。</li>
+<li>Window是个抽象概念：每一个Window对应着一个View和ViewRootImpl，Window通过ViewRootImpl来和View建立联系，View是Window存在的实体，只能通过WindowManager来访问Window。</li>
+<li>WindowManager的实现是WindowManagerImpl其再委托给WindowManagerGlobal来对Window进行操作，其中有四个List分别储存对应的View、ViewRootImpl、WindowManger.LayoutParams和正在被删除的View</li>
+<li>Window的实体是存在于远端的WindowMangerService中，所以增删改Window在本端是修改上面的几个List然后通过ViewRootImpl重绘View，通过WindowSession(每个应用一个)在远端修改Window。</li>
+<li>Activity创建Window：Activity会在attach()中创建Window并设置其回调(onAttachedToWindow()、dispatchTouchEvent()),Activity的Window是由Policy类创建PhoneWindow实现的。然后通过Activity#setContentView()调用PhoneWindow的setContentView。</li>
+</ol>
+</blockquote>
+<h3 id="12-Window添加的过程"><a href="#12-Window添加的过程" class="headerlink" title="12. Window添加的过程"></a>12. <a href="https://blog.csdn.net/kebelzc24/article/details/53888931" target="_blank" rel="noopener">Window添加的过程</a></h3><blockquote>
+<ol>
+<li>ActivityThread做为APP的入口，会执行 handleLaunchActivity -&gt; performLaunchActivity</li>
+<li>performLaunchActivity中通过ClassLoader创建Activity对象 -&gt; 调用Activity.attach方法 -&gt; callActivityOnCreate</li>
+<li>在Activity.attach方法中会创建一个Window实例PhoneWindow，并将activity作为callback传递给window</li>
+<li>在Activity的onCreate方法中，会调用setContentView，setContentView会调用PhoneWindow 的 setContentView</li>
+<li>PhoneWindow 的 setContentView会创建DecorView，并把我们自己设置的ContentView和DecorView绑定</li>
+<li>performLaunchActivity至此走完，之后的performResumeActivity会调用handleResumeActivity方法</li>
+<li>在handleResumeActivity中，会调用Activity的getWindowManager()获取一个WindowManager，接着调用WindowManager的addView方法</li>
+<li>addView实际执行的是WindowManagerGlobal的addView()，这里会创建一个ViewRootImpl，并调用ViewRootImpl的setView方法</li>
+<li>在setView这个方法内部，会通过跨进程的方式向WMS（WindowManagerService）发起一个调用，从而将DecorView最终添加到Window上</li>
+</ol>
+</blockquote>
+<h3 id="13-APK的安装流程"><a href="#13-APK的安装流程" class="headerlink" title="13. APK的安装流程"></a>13. APK的安装流程</h3><p><img src="https://user-gold-cdn.xitu.io/2018/5/4/16329f99d3a4b73a?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></p>
+<blockquote>
+<ol>
+<li>解压文件到data/app目录下</li>
+<li>资源管理器加载资源文件</li>
+<li>解析解析AndroidManifest文件，并在/data/data/目录下创建对应的应用数据目录。</li>
+<li>然后对dex文件进行优化，并保存在dalvik-cache目录下。</li>
+<li>将AndroidManifest文件解析出的四大组件信息注册到PackageManagerService中。</li>
+<li>安装完成后，发送广播。</li>
+</ol>
+</blockquote>
+<h3 id="14-双亲委托模式类加载的过程"><a href="#14-双亲委托模式类加载的过程" class="headerlink" title="14. 双亲委托模式类加载的过程"></a>14. <a href="https://www.ibm.com/developerworks/cn/java/j-lo-classloader/" target="_blank" rel="noopener">双亲委托模式类加载的过程</a></h3><blockquote>
+<ol>
+<li>调用当前类加载器的loadClass加载类</li>
+<li>loadClass中先调用findLoadedClass查看类是否已加载，已加载-&gt;over</li>
+<li>还没有加载，调用父类加载器的loadClass，父类加载器加载完成 -&gt; over</li>
+<li>如果父类加载器没有加载，调用本类加载器的findClass,并在findClass中调用·defineClass方法加载</li>
+</ol>
+</blockquote>
+<h3 id="15-Android中ClassLoader"><a href="#15-Android中ClassLoader" class="headerlink" title="15. Android中ClassLoader"></a>15. Android中ClassLoader</h3><blockquote>
+<ol>
+<li>Android中加载的是Dex文件</li>
+<li>ClassLoader 是个抽象类，其具体实现的子类有 BaseDexClassLoader 和SecureClassLoader，（SecureClassLoader 的子类是 URLClassLoader ，其只能用来加载 jar 文件，这在 Android 的 Dalvik/ART 上没法使用的）</li>
+<li>BaseDexClassLoader 的子类是 PathClassLoader 和 DexClassLoader 。</li>
+<li>PathClassLoader 在应用启动时创建，从 data/app/… 安装目录下加载 apk 文件。</li>
+<li>DexClassLoader 则没有此限制，可以从 SD 卡或网络加载包含 class.dex 的 .jar 和 .apk 文件，这也是插件化和热修复的基础</li>
+</ol>
+</blockquote>
+<h2 id="项目构建"><a href="#项目构建" class="headerlink" title="项目构建"></a>项目构建</h2><hr>
+<h3 id="0-点击AndroidStudio的build按钮后发生了什么"><a href="#0-点击AndroidStudio的build按钮后发生了什么" class="headerlink" title="0. 点击AndroidStudio的build按钮后发生了什么"></a>0. <a href="https://juejin.im/post/5a939fdd5188257a585109ff" target="_blank" rel="noopener">点击AndroidStudio的build按钮后发生了什么</a></h3><p>build过程即执行gradle task 打包生成apk的过程：</p>
+<blockquote>
+<ol>
+<li>通过appt工具，将资源文件生成R.java文件；将aild文件转换成对应的java文件</li>
+<li>编译java文件，生成.class文件</li>
+<li>将.class文件转换成Android虚拟机支持的.dex文件</li>
+<li>通过apkbuilder将dex文件和编译后的资源文件生成apk文件</li>
+<li>对apk进行签名和对齐</li>
+</ol>
+</blockquote>
+<h3 id="1-Android-Debug和Release状态的不同"><a href="#1-Android-Debug和Release状态的不同" class="headerlink" title="1. Android Debug和Release状态的不同"></a>1. Android Debug和Release状态的不同</h3><p>调试模式允许我们为优化代码而添加许多额外的功能，这些功能在Release时都应该去掉；Release包可以为了安全等做一些额外的优化，这些优化可能比较耗时，在Debug时是不需要的</p>
+<blockquote>
+<ol>
+<li>log日志只在debug时输入，release时应该关掉（为了安全）</li>
+<li>签名/混淆/压缩等在debug编译时可以加入，减少打包时间</li>
+<li>可以在debug包中加入一些额外的功能辅助我们开发，如直接打印网络请求的控件，内存泄漏检测工具LeakCanary等</li>
+<li>在打Release包时，除了混淆等操作，往往还需要加固操作，保证APP的安全</li>
+</ol>
+</blockquote>
+<h3 id="2-Dalvik和Art"><a href="#2-Dalvik和Art" class="headerlink" title="2. Dalvik和Art"></a>2. <a href="https://blog.csdn.net/jason0539/article/details/50440669" target="_blank" rel="noopener">Dalvik和Art</a></h3><blockquote>
+<ol>
+<li>Dalvik 是 Android 中使用的虚拟机，执行dex字节码</li>
+<li>Dalvik 与 JVM 相比<ol>
+<li>JVM执行class字节码文件，Dalvik执行dex字节码文件，dex文件做了优化，提及更小</li>
+<li>Dalvik是基于寄存器的，VM基于栈</li>
+</ol>
+</li>
+<li>Art是Dalvik虚拟机的升级版，Dalvik是解释型的，Art是翻译型的<ol>
+<li>Dalvik虚拟机执行的是dex字节码，ART虚拟机执行的是本地机器码</li>
+<li>相对于Dalvik，Art安装占用内存更大，安装时间更长，但是运行速度会有提升</li>
+</ol>
+</li>
+</ol>
+</blockquote>
+<h3 id="3-解决方法数超过65535的方法"><a href="#3-解决方法数超过65535的方法" class="headerlink" title="3. 解决方法数超过65535的方法"></a>3. 解决方法数超过65535的方法</h3><blockquote>
+<ol>
+<li>代码混淆(原理是减小方法数)</li>
+<li>sdk裁减(原理是减小方法数)</li>
+<li>multi-dex（原理是打包成多个dex）</li>
+</ol>
+</blockquote>
+<h3 id="4-multi-dex-问题"><a href="#4-multi-dex-问题" class="headerlink" title="4. multi-dex 问题"></a>4. <a href="https://www.jianshu.com/p/79a14d340cb0" target="_blank" rel="noopener">multi-dex</a> 问题</h3><blockquote>
+<p>引入multi-dex后，在5.0以下手机上，第一次安装后启动速度可能变慢甚至anr，需要进行优化:如单独开一个线程；修改keep文件等</p>
+</blockquote>
+<h3 id="5-App签名"><a href="#5-App签名" class="headerlink" title="5. App签名"></a>5. <a href="https://mp.weixin.qq.com/s/6GV5HFnzZnY_qJlV9scVrw" target="_blank" rel="noopener">App签名</a></h3><blockquote>
+<ol>
+<li>原理：先计算出hash值，再对hash值进行非对称加密</li>
+<li>V1版本签名生成的APK中与签名有关的文件：<ol>
+<li>MANIFEST.MF: jar 包的文件清单，在 apk 中我们用来记录所有非目录文件的 数据指纹</li>
+<li>CERT.SF:根据MANIFEST.MF生成的文件</li>
+<li>CERT.RSA：这里会把之前生成的CERT.SF文件，用私钥计算出签名, 然后将签名以及包含公钥信息的数字证书一同写入CERT.RSA 中保存</li>
+</ol>
+</li>
+<li>V1版本存在安全漏洞，google推出了v2版</li>
+</ol>
+</blockquote>
+<h3 id="6-常用的adb-和-adb-shell命令"><a href="#6-常用的adb-和-adb-shell命令" class="headerlink" title="6. 常用的adb 和 adb shell命令"></a>6. <a href="http://www.jb51.net/article/112562.htm" target="_blank" rel="noopener">常用的adb 和 adb shell命令</a></h3><blockquote>
+<p>查看当前连接的设备：adb devices<br> 结束adb连接： adb kill-server<br> 安装apk： adb install test.apk<br> 从手机获取文件和推送文件到手机：adb push &lt;本地文件&gt; &lt;远程路径&gt;  ；  adb pull &lt;远程路径&gt; &lt;本地路径&gt;<br> 获取log信息：adb logcat &gt; log.txt</p>
+</blockquote>
+<blockquote>
+<p>启动Activity： adb shell am start -n 包名/包名＋类名<br> 显示系统Activity栈信息：adb shell dumpsys activity<br> 发送广播：adb shell am broadcast -a “android.intent.action.AdupsFota.WriteCommandReceiver”<br> 查看进程信息：adb shell ps &lt;package_name|PID&gt;<br> 杀掉某个进程：adb shell kill pidNumber<br> 查看内存占用：adb shell dumpsys meminfo &lt;package_name|PID&gt;</p>
+</blockquote>
+<h3 id="7-jar和aar的区别"><a href="#7-jar和aar的区别" class="headerlink" title="7. jar和aar的区别"></a>7. jar和aar的区别</h3><blockquote>
+<p>Jar包里面只有代码，aar里面不光有代码还包括代码还包括资源文件，比如 drawable 文件，xml 资源文件。对于一些不常变动的 Android Library，我们可以直接引用 aar，加快编译速度</p>
+</blockquote>
+<h3 id="8-不同的CPU架构对APP的影响"><a href="#8-不同的CPU架构对APP的影响" class="headerlink" title="8. 不同的CPU架构对APP的影响"></a>8. <a href="https://www.jianshu.com/p/cb05698a1968" target="_blank" rel="noopener">不同的CPU架构对APP的影响</a></h3><blockquote>
+<ol>
+<li>cpu的架构有armeabi、armeabi-v7a、x86等</li>
+<li>针对不同的CPU，使用不同的so包，可以使性能最大化</li>
+<li>如果a.so提供了armeabi、armeabi-v7a、x86格式，那么b.so也要提供这几个格式，否则可能崩溃</li>
+<li>当没有对应cpu的so时，会选择其他so，但执行速度会变慢：当一个应用安装在设备上，只有该设备支持的CPU架构对应的.so文件会被安装。在x86设备上，libs/x86目录中如果存在.so文件的话，会被安装，如果不存在，则会选择armeabi-v7a中的.so文件，如果也不存在，则选择armeabi目录中的.so文件（因为x86设备也支持armeabi-v7a和armeabi）</li>
+</ol>
+</blockquote>
+<h3 id="9-compileSdkVersion，minSdkVersion，targetSdkVersion-都是啥"><a href="#9-compileSdkVersion，minSdkVersion，targetSdkVersion-都是啥" class="headerlink" title="9. compileSdkVersion，minSdkVersion，targetSdkVersion 都是啥"></a>9. <a href="https://blog.csdn.net/u010286855/article/details/54691614" target="_blank" rel="noopener">compileSdkVersion，minSdkVersion，targetSdkVersion</a> 都是啥</h3><blockquote>
+<ol>
+<li>compileSdkVersion ：编译所依赖的版本，它可以让我们在写代码时调用最新的api，告知我们过时的api</li>
+<li>minSdkVersion：最小的可安装此App的版本，意味着我们不用做低于此版本的兼容</li>
+<li>targetSdkVersion: 目标版本，可以让我们虽然运行在最新的手机上，但是行为和target版本一致，比如：如果targetSdkVersion小于Android 6.0，那么即使我们的app运行在6.0系统上，也不需要运行时权限</li>
+</ol>
+</blockquote>
+<h3 id="10-低版本SDK实现高版本api"><a href="#10-低版本SDK实现高版本api" class="headerlink" title="10. 低版本SDK实现高版本api"></a>10. 低版本SDK实现高版本api</h3><blockquote>
+<ol>
+<li>使用@TargetApi 来标明api版本，这样编译器就不会报错了</li>
+<li>在代码逻辑中判断版本，在低版本上调用替代api或自己实现的算法。</li>
+</ol>
+</blockquote>
+<h2 id="部分功能的实现"><a href="#部分功能的实现" class="headerlink" title="部分功能的实现"></a>部分功能的实现</h2><hr>
+<h3 id="0-怎样退出终止自己的APP"><a href="#0-怎样退出终止自己的APP" class="headerlink" title="0. 怎样退出终止自己的APP"></a>0. <a href="https://blog.csdn.net/fzkf9225/article/details/73480469" target="_blank" rel="noopener">怎样退出终止自己的APP</a></h3><blockquote>
+<ol>
+<li>记录启动的activity</li>
+<li>需要退出时调用存活activity的finish方法，并调用System.exit(0)方法</li>
+</ol>
+</blockquote>
+<h3 id="1-Android中启动线程的几种方式"><a href="#1-Android中启动线程的几种方式" class="headerlink" title="1. Android中启动线程的几种方式"></a>1. Android中启动线程的几种方式</h3><blockquote>
+<ol>
+<li>java中可以用实现Runnable接口、实现Callable接口、继承Thread类三种方式</li>
+<li>Android中还可以用<a href="https://www.jianshu.com/p/3b839d7a3fcf" target="_blank" rel="noopener">AsyncTask</a>、<a href="https://www.jianshu.com/p/4a57de01c8f5" target="_blank" rel="noopener">HandlerThread</a>、<a href="https://blog.csdn.net/matrix_xu/article/details/7974393" target="_blank" rel="noopener">IntendService</a></li>
+</ol>
+</blockquote>
+<h3 id="2-长链接-心跳包"><a href="#2-长链接-心跳包" class="headerlink" title="2. 长链接+心跳包"></a>2. <a href="https://blog.csdn.net/u010072711/article/details/76099776" target="_blank" rel="noopener">长链接+心跳包</a></h3><blockquote>
+<ol>
+<li>长连接：App 与服务器建立一个生命周期很长的连接，服务器通过push向App推送消息</li>
+<li>心跳包：App 每隔一段时间就会向服务器查询是否有新的消息</li>
+<li>长连接可能因为各种原因被打断，心跳包接收消息可能不及时，所以我们可以采取长连接+心跳包的方式：通过Socket建立一个长连接，并通过心跳包检测这个长连接是否存活，长连接中断的话则重新建立</li>
+</ol>
+</blockquote>
+<h3 id="3-Android-中XML的解析"><a href="#3-Android-中XML的解析" class="headerlink" title="3. Android 中XML的解析"></a>3. <a href="https://www.jianshu.com/p/e636f4f8487b" target="_blank" rel="noopener">Android 中XML的解析</a></h3><blockquote>
+<p>Androi中主要有DOM，SAX，PULL三种方式<br> DOM将文件都加载到内存中，比较消耗内存；SAX和PULL节省内存，PULL使用比SAX更简单</p>
+</blockquote>
+<h3 id="4-系统上安装了多种浏览器，能否指定某浏览器访问指定页面？请说明原由。"><a href="#4-系统上安装了多种浏览器，能否指定某浏览器访问指定页面？请说明原由。" class="headerlink" title="4. 系统上安装了多种浏览器，能否指定某浏览器访问指定页面？请说明原由。"></a>4. 系统上安装了多种浏览器，能否指定某浏览器访问指定页面？请说明原由。</h3><blockquote>
+<ol>
+<li>指定浏览器：intent.setClassName(“com.android.browser”,”com.android.browser.BrowserActivity”);</li>
+<li>指定网址： Uri uriBrowsers = Uri.parse(“<a href="http://www.sina.com.cn”" target="_blank" rel="noopener">http://www.sina.com.cn”</a>); intent.setData(uriBrowsers);</li>
+</ol>
+</blockquote>
+<h3 id="5-java中如何引用本地语言"><a href="#5-java中如何引用本地语言" class="headerlink" title="5. java中如何引用本地语言"></a>5. java中如何引用本地语言</h3><blockquote>
+<p>可以用JNI（java native interface  java 本地接口）接口</p>
+</blockquote>
+<h3 id="6-JNI的使用方式"><a href="#6-JNI的使用方式" class="headerlink" title="6. JNI的使用方式"></a>6. <a href="https://blog.csdn.net/kevindgk/article/details/52813258" target="_blank" rel="noopener">JNI的使用方式</a></h3><blockquote>
+<ol>
+<li><p>下载NDK，配置环境变量，配置gradle文件</p>
+</li>
+<li><p>JAVA中声明native 方法如private native String printJNI(String inputStr);</p>
+</li>
+<li><p>生成或写对应的头文件</p>
+</li>
+<li><p>编写对应文件实现代码</p>
+</li>
+<li><p>编译成so文件</p>
+</li>
+<li><p>使用</p>
+</li>
+<li><p>扩展：</p>
+<p>native调用java代码</p>
+<ol>
+<li>获取你需要访问的Java对象的类</li>
+</ol>
+</li>
+</ol>
+</blockquote>
+<pre><code>jclass cls = (*env)-&gt;GetObjectClass(env, obj);       //使用GetObjectClass方法获取obj对应的jclass。   
+class cls = (*env)-&gt;FindClass(“android/util/log”) //直接搜索类名，需要是static修饰的类。  
+复制代码</code></pre><blockquote>
+<ol>
+<li>获取MethodID：</li>
+</ol>
+</blockquote>
+<pre><code>methodID mid = (*env)-&gt;GetMethodID(env, cls, &quot;callback&quot;, &quot;(I)V&quot;); //GetStaticMethodID(…)，获取静态方法的ID使用GetMethdoID方法获取你要使用的方法的MethdoID  
+复制代码</code></pre><blockquote>
+<ol>
+<li>调用：</li>
+</ol>
+</blockquote>
+<pre><code>    (*env)-&gt;CallVoidMethod(env, obj, mid, depth);// CallStaticIntMethod(….) ， 调用静态方法  
+复制代码</code></pre><h3 id="7-NDK是什么"><a href="#7-NDK是什么" class="headerlink" title="7. NDK是什么"></a>7. NDK是什么</h3><blockquote>
+<p>NDK 是Native Development Kit 的缩写，是一些列工具的集合，帮助开发者迅速的开发C/C++的动态库</p>
+</blockquote>
+<h3 id="8-什么是JVM"><a href="#8-什么是JVM" class="headerlink" title="8. 什么是JVM"></a>8. <a href="https://segmentfault.com/a/1190000002579346" target="_blank" rel="noopener">什么是JVM</a></h3><blockquote>
+<ol>
+<li>JVM是JAVA虚拟机，保证了java语言的跨平台性，是编译后的 Java 程序（.class文件）和硬件系统之间的接口</li>
+<li>JVM = 类加载器 classloader + 执行引擎 execution engine + 运行时数据区域 runtime data area</li>
+</ol>
+</blockquote>
+<h3 id="9-视频加密"><a href="#9-视频加密" class="headerlink" title="9. 视频加密"></a>9. <a href="https://github.com/gwuhaolin/blog/issues/10" target="_blank" rel="noopener">视频加密</a></h3><p>视频加密根据场景的不同有很多种方式</p>
+<blockquote>
+<ol>
+<li>如仅对地址加密，可以起到防盗链的目的，可以与其他方法一起使用</li>
+<li>对整个文件加密，加解密时间长，不实用</li>
+<li>对文件的头中尾加密，播放器可以直接跳过，破解简单,不实用</li>
+<li>对视频流加密(<a href="https://github.com/hauk0101/video-hls-encrypt" target="_blank" rel="noopener">基于苹果HLS协议的加密</a>     <a href="https://github.com/gwuhaolin/blog/issues/10" target="_blank" rel="noopener">基于RTPE协议</a>)</li>
+<li>关键帧加密</li>
+</ol>
+</blockquote>
+<h3 id="10-绘制印章"><a href="#10-绘制印章" class="headerlink" title="10. 绘制印章"></a>10. <a href="https://blog.csdn.net/loser_li/article/details/48005683" target="_blank" rel="noopener">绘制印章</a></h3><blockquote>
+<ol>
+<li>创建一个bitmap，拿到canvas</li>
+<li>在canvas上绘制圆，绘制五角星，绘制文字，返回bitmap</li>
+</ol>
+</blockquote>
+<h3 id="11-文字阴影和描边的实现"><a href="#11-文字阴影和描边的实现" class="headerlink" title="11. 文字阴影和描边的实现"></a>11. <a href="https://blog.csdn.net/figo0423/article/details/51464116" target="_blank" rel="noopener">文字阴影和描边的实现</a></h3><blockquote>
+<ol>
+<li>阴影：shadow属性</li>
+<li>描边：两个TextView叠加；或者重写onDraw方法</li>
+</ol>
+</blockquote>
+<h3 id="12-Android生成设备唯一标识符"><a href="#12-Android生成设备唯一标识符" class="headerlink" title="12. Android生成设备唯一标识符"></a>12. <a href="https://www.jianshu.com/p/b6f4b0aca6b0" target="_blank" rel="noopener">Android生成设备唯一标识符</a></h3><blockquote>
+<p>选取 DeviceId，AndroidId，Serial Number，Mac，蓝牙地址等中的一个或者几个作为种子，生成UUID。</p>
+</blockquote>
+<h3 id="13-实现客户端的自动登录"><a href="#13-实现客户端的自动登录" class="headerlink" title="13. 实现客户端的自动登录"></a>13. <a href="https://blog.csdn.net/xiaopihair123/article/details/53150201" target="_blank" rel="noopener">实现客户端的自动登录</a></h3><blockquote>
+<ol>
+<li>第一次登录时保存两个token，一个长效一个短效</li>
+<li>短效token用于每次网络请求的用户标识</li>
+<li>长效token用于当短效token失效时自动登录，重新获取token</li>
+</ol>
+</blockquote>
+<h3 id="14-Android如何在不压缩的情况下加载高清大图"><a href="#14-Android如何在不压缩的情况下加载高清大图" class="headerlink" title="14. Android如何在不压缩的情况下加载高清大图"></a>14. <a href="https://www.jianshu.com/p/b0e2be9e0f8c" target="_blank" rel="noopener">Android如何在不压缩的情况下加载高清大图</a></h3><blockquote>
+<p>使用BitmapRegionDecoder</p>
+</blockquote>
+<h3 id="15-SSL证书的验证"><a href="#15-SSL证书的验证" class="headerlink" title="15. SSL证书的验证"></a>15. SSL证书的验证</h3><blockquote>
+<ol>
+<li><p>在使用Https时，我们需要对SSL证书做验证以确保有效</p>
+</li>
+<li><p>证书需要验证证书有效性，时效，域名等</p>
+</li>
+<li><p>Android中WebView可以重写onReceivedSslError方法来处理ssl证书不对时的情况</p>
+</li>
+<li><p>OkHttp设置证书验证</p>
+<p>：</p>
+<ol>
+<li>验证可以是双向的，也可以是单向的</li>
+<li>单向：将服务器对应的Server.cer文件打包进Apk中，通过cer文件生成SSLSocketFactory，并将其设置给okHttpClient</li>
+<li>双向：用Server.cer和Client.key生成SSLSocketFactory，并将其设置给okHttpClient</li>
+</ol>
+</li>
+</ol>
+</blockquote>
+<h3 id="16-计算一张100px-100px的图片在内存中会占用多大内存"><a href="#16-计算一张100px-100px的图片在内存中会占用多大内存" class="headerlink" title="16. 计算一张100px*100px的图片在内存中会占用多大内存"></a>16. <a href="https://www.cnblogs.com/YuangPong/p/6694512.html" target="_blank" rel="noopener">计算一张100px*100px的图片在内存中会占用多大内存</a></h3><blockquote>
+<ol>
+<li>内存大小 = 100<em>100</em>像素点大小</li>
+<li>像素点大小和编码方式有关：ARGB_8888占8+8+8+8=32bit；ARGB_4444占4+4+4+4 = 16bit；</li>
+</ol>
+</blockquote>
+<h3 id="17-如何实现动态代理"><a href="#17-如何实现动态代理" class="headerlink" title="17. 如何实现动态代理"></a>17. <a href="https://blog.csdn.net/hello2mao/article/details/52346205" target="_blank" rel="noopener">如何实现动态代理</a></h3><blockquote>
+<ol>
+<li>创建一个实现InvocationHandler接口的类，它必须实现invoke方法</li>
+<li>调用Proxy的静态方法newProxyInstance，创建一个代理类</li>
+</ol>
+</blockquote>
+<h3 id="18-Android中有哪些方法实现定时和延时任务？它们的适用场景是什么？"><a href="#18-Android中有哪些方法实现定时和延时任务？它们的适用场景是什么？" class="headerlink" title="18. Android中有哪些方法实现定时和延时任务？它们的适用场景是什么？"></a>18. Android中有哪些方法实现定时和延时任务？它们的适用场景是什么？</h3><blockquote>
+<ol>
+<li>倒计时类:用CountDownTimer</li>
+<li>延迟类: 1. CountDownTimer，可巧妙的将countDownInterval设成和millisInFuture一样，这样就只会调用一次onTick和一次onFinish 2. handler.sendMessageDelayed,可参考CountDownTimer的内部实现，简化一下，个人比较推荐这个 3. TimerTask，代码写起来比较乱 4. Thread.sleep，感觉这种不太好</li>
+<li>定时类: 1. 参照延迟类的，自己计算好要延迟多少时间 2. handler.sendMessageAtTime 3. AlarmManager，适用于定时比较长远的时间，例如闹铃</li>
+</ol>
+</blockquote>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><hr>
+<h3 id="0-Json有什么优势"><a href="#0-Json有什么优势" class="headerlink" title="0. Json有什么优势"></a>0. Json有什么优势</h3><p>有比较才会有优势，我们通常将Json与Xml进行比较，Json更加轻量。我觉得在某些程度上讲，这是一个仁者见仁智者见智的问题。例如有些人认为Json相比Xml更易读，有些人责认为不然，这里大致列举几条，仅供参考</p>
+<blockquote>
+<ol>
+<li>结构简单，可读性更强，读写更加容易</li>
+<li>格式是压缩的，占用带宽小</li>
+<li>支持多种语言</li>
+<li>因为JSON格式能够直接为服务器端代码使用,大大简化了服务器端和客户端的代码开发量</li>
+</ol>
+</blockquote>
+<h3 id="1-MVC"><a href="#1-MVC" class="headerlink" title="1. MVC"></a>1. <a href="https://www.cnblogs.com/Claire6649/p/6091061.html" target="_blank" rel="noopener">MVC</a></h3><blockquote>
+<p>MVC是model,view,controller的缩写</p>
+</blockquote>
+<blockquote>
+<ol>
+<li>模型（model）对象：是应用程序的主体部分，所有的业务逻辑都应该写在该层;</li>
+<li>视图（view）对象(<strong>对应Android中的布局xml文件</strong>)：是应用程序中负责生成用户界面的部分。也是在整个mvc架构中用户唯一可以看到的一层，接收用户的输入，显示处理结果; </li>
+<li>控制器（control）对象（<strong>对应Android中的Activity</strong>）：是根据用户的输入，控制用户界面数据显示及更新model对象状态的部分，控制器更重要的一种导航功能，响应用户出发的相关事件，交给m层处理。 扩展：和MVP最大的区别是View和Model可以直接交互</li>
+</ol>
+</blockquote>
+<h3 id="2-什么是控制反转（IOC-Inversion-of-Control）"><a href="#2-什么是控制反转（IOC-Inversion-of-Control）" class="headerlink" title="2. 什么是控制反转（IOC Inversion of Control）"></a>2. <a href="http://www.jb51.net/article/118316.htm" target="_blank" rel="noopener">什么是控制反转（IOC Inversion of Control）</a></h3><blockquote>
+<ol>
+<li>在Java开发中，IoC意 味着将你设计好的类交给系统去控制，而不是在你的类内部控制</li>
+<li>是框架的重要特征</li>
+<li>Android中Activity 的生命周期都是框架控制的，是一种控制反转</li>
+</ol>
+</blockquote>
+<h3 id="3-Android中的IOC（控制反转）框架"><a href="#3-Android中的IOC（控制反转）框架" class="headerlink" title="3. Android中的IOC（控制反转）框架"></a>3. <a href="https://www.jianshu.com/p/3968ffabdf9d" target="_blank" rel="noopener">Android中的IOC（控制反转）框架</a></h3><blockquote>
+<ol>
+<li>控制反转：将对象的创建交给框架去做</li>
+<li>常用的框架：ButterNife/Android Annotation</li>
+<li>2中两个框架都是通过java的注释框架实现的，并且都是作用在编译期</li>
+</ol>
+</blockquote>
+<h3 id="4-请解释下Android程序运行时权限与文件系统权限的区别"><a href="#4-请解释下Android程序运行时权限与文件系统权限的区别" class="headerlink" title="4. 请解释下Android程序运行时权限与文件系统权限的区别"></a>4. 请解释下Android程序运行时权限与文件系统权限的区别</h3><blockquote>
+<ol>
+<li>运行时权限是APP启动后由Android虚拟机（如Dalvik）控制的</li>
+<li>文件系统权限是Linux内核授权</li>
+</ol>
+</blockquote>
+<h3 id="5-AOP-面向切面编程"><a href="#5-AOP-面向切面编程" class="headerlink" title="5. AOP 面向切面编程"></a>5. <a href="https://www.cnblogs.com/ganchuanpu/p/8594877.html" target="_blank" rel="noopener">AOP 面向切面编程</a></h3><blockquote>
+<ol>
+<li>面向切面编程是通过预编译方式和运行期动态代理实现程序功能的统一维护的一种技术</li>
+<li>例如很多功能需要先登陆，登陆在这里就是一个切面。</li>
+</ol>
+</blockquote>
+<h3 id="6-MVP-架构中-Presenter-定义为接口有什么好处"><a href="#6-MVP-架构中-Presenter-定义为接口有什么好处" class="headerlink" title="6. MVP 架构中 Presenter 定义为接口有什么好处"></a>6. MVP 架构中 Presenter 定义为接口有什么好处</h3><blockquote>
+<ol>
+<li>在goole官方的demo中，通过一个Contract把将View和Presenter管理起来，强化其一一对应的关系，便于操作</li>
+<li>[但是也有人认为不应该将Presenter定义为接口]<a href="http://www.infoq.com/cn/articles/do-not-give-the-prensenter-in-mvp-interface)，因为这并不会方便测试，还会增加复杂性" target="_blank" rel="noopener">http://www.infoq.com/cn/articles/do-not-give-the-prensenter-in-mvp-interface)，因为这并不会方便测试，还会增加复杂性</a></li>
+</ol>
+</blockquote>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><hr>
+<h3 id="0-Android中的几种动画"><a href="#0-Android中的几种动画" class="headerlink" title="0. Android中的几种动画"></a>0. <a href="https://www.cnblogs.com/ldq2016/p/5407061.html" target="_blank" rel="noopener">Android中的几种动画</a></h3><blockquote>
+<ol>
+<li>普通动画（视图动画、补间动画）</li>
+<li><a href="https://www.jianshu.com/p/2412d00a0ce4" target="_blank" rel="noopener">属性动画</a></li>
+<li>帧动画</li>
+<li>物理动画（Android 8.0）</li>
+</ol>
+</blockquote>
+<h3 id="1-HttpClient和HttpURLConnection的区别"><a href="#1-HttpClient和HttpURLConnection的区别" class="headerlink" title="1. HttpClient和HttpURLConnection的区别"></a>1. <a href="https://www.jianshu.com/p/a32d6980227b" target="_blank" rel="noopener">HttpClient和HttpURLConnection的区别</a></h3><h4 id="HttpClient"><a href="#HttpClient" class="headerlink" title="HttpClient"></a>HttpClient</h4><blockquote>
+<ol>
+<li>Apache公司提供的库</li>
+<li>拥有丰富的API，但也因为这个原因，在不破坏兼容性的前提下，其庞大的API也使人难以改进</li>
+<li>Android 6.0中抛弃了Http Client，替换成OkHttp</li>
+</ol>
+</blockquote>
+<h4 id="HttpURLConnection"><a href="#HttpURLConnection" class="headerlink" title="HttpURLConnection"></a>HttpURLConnection</h4><blockquote>
+<ol>
+<li>Sun公司提供的库</li>
+<li>功能比较简单，可拓展性强</li>
+<li>直接支持GZIP压缩，并且在Android 4.0 以上支持cache缓存，提高了网络效率</li>
+</ol>
+</blockquote>
+<h3 id="2-Intent"><a href="#2-Intent" class="headerlink" title="2. Intent"></a>2. Intent</h3><blockquote>
+<ol>
+<li>Intent是Android中的信使，可以启动Activity，Service等</li>
+<li>Intent可以设置的几项值：Action, Category, Data/Type,Component</li>
+<li>当设定Component时，是显式调用，其余是隐式调用</li>
+</ol>
+</blockquote>
+<h3 id="3-IntentFilter"><a href="#3-IntentFilter" class="headerlink" title="3. IntentFilter"></a>3. <a href="https://blog.csdn.net/mynameishuangshuai/article/details/51673273" target="_blank" rel="noopener">IntentFilter</a></h3><blockquote>
+<ol>
+<li>IntentFilter 在AndroidMainifest中注册，用来帮助系统选出用户定义的隐式Intent对应的Activity /Service等</li>
+<li>Android是通过Intent的action、data、category这三个属性来进行匹配判断的<ol>
+<li>action：隐式启动需要给Intent设置Action，如果没有设置这条匹配则自动通过；必须给IntentFilter设置一个action</li>
+<li>data：如果Intent没有提供type，系统将从data中得到数据类型。同action类似，只要Intent的data只要与Intent Filter中的任一个data声明完全相同，data方面就完全匹配成功。</li>
+<li>category：Intent的Category可以有多个，每一个都需要和IntentFilter匹配才能算匹配上，不设置Intent的category时是默认的（DEFAULT）</li>
+<li>总结：只有一个Intent的action、data、category匹配上IntenFilter中的一组数据时，才算匹配成功。</li>
+</ol>
+</li>
+</ol>
+</blockquote>
+<h3 id="4-Intent-Bundle支持传送哪种类型的数据"><a href="#4-Intent-Bundle支持传送哪种类型的数据" class="headerlink" title="4. Intent/Bundle支持传送哪种类型的数据"></a>4. Intent/Bundle支持传送哪种类型的数据</h3><blockquote>
+<ol>
+<li>基本类型及其数组</li>
+<li>实现了Serializable或者Parcelable的类型及其数组</li>
+</ol>
+</blockquote>
+<h3 id="5-Manifest-xml文件中主要包括哪些信息"><a href="#5-Manifest-xml文件中主要包括哪些信息" class="headerlink" title="5. Manifest.xml文件中主要包括哪些信息"></a>5. Manifest.xml文件中主要包括哪些信息</h3><blockquote>
+<ol>
+<li>manifest：根节点，描述了包名，版本号等。</li>
+<li>application：包含package中application级别组件声明的根节点。</li>
+<li>activity：Activity是用来与用户交互的主要工具。</li>
+<li>receiver：IntentReceiver能使的application获得数据的改变或者发生的操作，即使它当前不在运行。</li>
+<li>service：Service是能在后台运行任意时间的组件。</li>
+<li>provider：ContentProvider是用来管理持久化数据并发布给其他应用程序使用的组件。</li>
+<li>uses-permission：请求你的package正常运作所需赋予的安全许可。</li>
+<li>permission： 声明了安全许可来限制哪些程序能你package中的组件和功能。</li>
+<li>uses-feature:使用到的硬件信息，如nfc</li>
+<li>upports-screens：支持的屏幕类型</li>
+<li>meta-data：data数据</li>
+<li><a href="https://blog.csdn.net/a19891024/article/details/54342799" target="_blank" rel="noopener">instrumentation</a>：声明了用来测试此package或其他package指令组件的代码。</li>
+</ol>
+</blockquote>
+<h3 id="6-dp-dip-dpi-px-sp是什么意思"><a href="#6-dp-dip-dpi-px-sp是什么意思" class="headerlink" title="6. dp, dip, dpi, px, sp是什么意思"></a>6. <a href="https://blog.csdn.net/binyao02123202/article/details/8090607" target="_blank" rel="noopener">dp, dip, dpi, px, sp是什么意思</a></h3><blockquote>
+<ol>
+<li>dp = dip（device independent pixels）,是设备独立像素</li>
+<li>sp:scaled pixels(放大像素)，主要用于字体显示。</li>
+<li>px（pixel）：像素</li>
+<li>dpi（dot per inch）</li>
+</ol>
+</blockquote>
+<h3 id="7-dp与px的换算公式"><a href="#7-dp与px的换算公式" class="headerlink" title="7. dp与px的换算公式"></a>7. <a href="https://blog.csdn.net/benbenxiongyuan/article/details/52920746" target="_blank" rel="noopener">dp与px的换算公式</a></h3><blockquote>
+<ol>
+<li>px = dp*像素密度/160</li>
+</ol>
+</blockquote>
+<pre><code> public static int dp2px(Context context, float dpValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dpValue * scale + 0.5f);
+    }
+
+复制代码</code></pre><h3 id="8-layout-sw400dp-layout-w400dp分别代表什么意思"><a href="#8-layout-sw400dp-layout-w400dp分别代表什么意思" class="headerlink" title="8. layout-sw400dp, layout-w400dp分别代表什么意思"></a>8. <a href="https://blog.csdn.net/wxx614817/article/details/50975265" target="_blank" rel="noopener">layout-sw400dp, layout-w400dp分别代表什么意思</a></h3><blockquote>
+<ol>
+<li>layout-w400dp:当屏幕相对宽度大于400dp时，来这里取layout（与横竖屏有关）</li>
+<li>layout-sw400dp:当屏幕绝对宽度大于400dp时，来这里取layout（与横竖屏无关）</li>
+</ol>
+</blockquote>
+<h3 id="9-Android-样式和主题"><a href="#9-Android-样式和主题" class="headerlink" title="9. Android 样式和主题"></a>9. <a href="https://blog.csdn.net/ahou2468/article/details/78965839" target="_blank" rel="noopener">Android 样式和主题</a></h3><blockquote>
+<ol>
+<li>样式（Styles）:可以理解成是针对View或者窗口(Window)设置外观或者格式的一个属性集合</li>
+<li>主题（Themes）：主题相比单个视图而言，是应用到整个 Activity 或者 application 的样式</li>
+<li>区别：<ol>
+<li>Theme作用域是Activity或者Application，Stytle针对View或者窗口(Window)</li>
+<li>某些主题样式不可以在View中使用，例如”@android:style/Theme.NoTitleBar” 等 扩展： 属性（Attributes）:你也可以将单个属性应用到 Android 样式上,通常会在自定义View 的时候，自定义属性。</li>
+</ol>
+</li>
+</ol>
+</blockquote>
+<h3 id="10-Android-P的新特性（2018-5-5）"><a href="#10-Android-P的新特性（2018-5-5）" class="headerlink" title="10. Android P的新特性（2018/5/5）"></a>10. Android P的新特性（2018/5/5）</h3><blockquote>
+<ol>
+<li>Goole 下个Android版本的预览已经放出，代号p</li>
+<li>支持wifi室内定位</li>
+<li>适配刘海屏</li>
+<li>通知栏改进：可以显示对话，附加照片和表情等</li>
+<li>多摄像头API</li>
+<li>神经网络API 1.1</li>
+</ol>
+</blockquote>
+<h3 id="11-热修复原理"><a href="#11-热修复原理" class="headerlink" title="11. 热修复原理"></a>11. <a href="https://blog.csdn.net/csdn_lqr/article/details/78534065" target="_blank" rel="noopener">热修复原理</a></h3><p>热修复的原理是让我们的新类替换掉原来类的加载，从而达到修复的目的，以下是一种思路：</p>
+<blockquote>
+<ol>
+<li>java中通过PathClassLoader和DexClassLoader来加载类，类加载的方式是双亲委派模式</li>
+<li>PathClassLoader和DexClassLoader都继承自BaseDexClassLoader</li>
+<li>BaseDexClassLoader中维护了一个dex的数组</li>
+<li>我们可以通过DexClassLoader加载类，然后通过反射的机制将加载进来的数组添加到path数组的前面</li>
+<li>加载的时候找到我们需要的class后，就不再继续向后找了，所以可以达到修复的目的</li>
+</ol>
+</blockquote>
+<h3 id="12-Android中的进程间通信（IPC）"><a href="#12-Android中的进程间通信（IPC）" class="headerlink" title="12. Android中的进程间通信（IPC）"></a>12. Android中的进程间通信（IPC）</h3><blockquote>
+<ol>
+<li>Bundle : 只支持四大组件</li>
+<li>文件共享：不适合并发</li>
+<li>Messenger：封装了AIDL</li>
+<li>AIDL：通过binder实现</li>
+<li>ContentProvider：共享数据</li>
+<li>Socket：适用于网络等</li>
+</ol>
+</blockquote>
+<h3 id="13-解决Android7-0-更新安装包时不能自动安装问题"><a href="#13-解决Android7-0-更新安装包时不能自动安装问题" class="headerlink" title="13. 解决Android7.0 更新安装包时不能自动安装问题"></a>13. <a href="https://www.jianshu.com/p/c58aa241688c" target="_blank" rel="noopener">解决Android7.0 更新安装包时不能自动安装问题</a></h3><blockquote>
+<ol>
+<li>Android 7.0中私有目录访问会被限制，导致不能自动安装</li>
+<li>可以使用FileProvider来解决</li>
+</ol>
+</blockquote>
+<h3 id="如何开启多进程-应用是否可以开启N个进程？"><a href="#如何开启多进程-应用是否可以开启N个进程？" class="headerlink" title="如何开启多进程?应用是否可以开启N个进程？"></a><a href="https://www.jianshu.com/p/11da30127823" target="_blank" rel="noopener">如何开启多进程</a>?应用是否可以开启N个进程？</h3><blockquote>
+<ol>
+<li>通过在AndroidManifest中给Activity设置process属性开启新的进程</li>
+<li>可以开启N个进程，例如给webview单独开启一个进程，但要处理多进程间通信和多次初始化Handler问题</li>
+</ol>
+</blockquote>
+<h3 id="Service先start再bind如何关闭service"><a href="#Service先start再bind如何关闭service" class="headerlink" title="Service先start再bind如何关闭service"></a><a href="https://www.jianshu.com/p/ee224f18a4bd" target="_blank" rel="noopener">Service先start再bind如何关闭service</a></h3><blockquote>
+<p>先unbind,再stop</p>
+</blockquote>
+<h3 id="为什么bindService可以跟Activity生命周期联动"><a href="#为什么bindService可以跟Activity生命周期联动" class="headerlink" title="为什么bindService可以跟Activity生命周期联动"></a>为什么bindService可以跟Activity生命周期联动</h3><blockquote>
+<ol>
+<li>在Activity退出时调用unbind方法，service会销毁</li>
+<li>如果不调用unbind方法，service也会销毁，但是<a href="https://www.cnblogs.com/vokie/archive/2013/04/15/3602088.html" target="_blank" rel="noopener">会抛出leaked serviceConnection 异常</a> (<a href="https://yiweifen.com/v-1-335376.html" target="_blank" rel="noopener">参考2</a>)</li>
+</ol>
+</blockquote>
+<h3 id="子线程中如何使用Handler"><a href="#子线程中如何使用Handler" class="headerlink" title="子线程中如何使用Handler"></a><a href="https://www.cnblogs.com/lang-yu/p/6228832.html" target="_blank" rel="noopener">子线程中如何使用Handler</a></h3><blockquote>
+<ol>
+<li>使用HandlerThread,新建Handler时通过调用HandlerThread 的 getLooper方法拿到looper</li>
+<li>原理：HandlerThread在run时会为我们生成一个looper，getLooper方法会阻塞等待直到 looper！=null 才返回。</li>
+</ol>
+</blockquote>
+<h3 id="如何进行单元测试"><a href="#如何进行单元测试" class="headerlink" title="如何进行单元测试"></a>如何进行单元测试</h3><blockquote>
+<ol>
+<li><a href="https://www.jianshu.com/p/79addb29b06d" target="_blank" rel="noopener">Junit</a>:不需要依赖android环境，适合于逻辑测试</li>
+<li><a href="https://www.oschina.net/question/54100_27061" target="_blank" rel="noopener">Instrumentation</a>:依赖android环境，可以启动Activity，模拟内存回收，获取组件等，模拟点击等。需要在AndroidManifest中进行配置，适合于更复杂的测试</li>
+</ol>
+</blockquote>
+<h3 id="TabLayout如何设置指示器的宽度"><a href="#TabLayout如何设置指示器的宽度" class="headerlink" title="TabLayout如何设置指示器的宽度"></a><a href="https://blog.csdn.net/qq_34664695/article/details/78535572" target="_blank" rel="noopener">TabLayout如何设置指示器的宽度</a></h3><blockquote>
+<p>通过反射拿到对应的指示器，设置LayoutParams</p>
+</blockquote>
+<h3 id="Android中如何查看一个对象的回收情况"><a href="#Android中如何查看一个对象的回收情况" class="headerlink" title="Android中如何查看一个对象的回收情况"></a>Android中如何查看一个对象的回收情况</h3><blockquote>
+<ol>
+<li>外部：通过adb shell 命令导出内存，借助工具分析</li>
+<li>内部：通过将对象加入WeakReference，配合RefernceQueue观察对象是否被回收，被回收的对象会被加入到RefernceQueue中</li>
+</ol>
+</blockquote>
+<h3 id="回形打印二维数组"><a href="#回形打印二维数组" class="headerlink" title="回形打印二维数组"></a><a href="https://www.jianshu.com/p/35e618aec35f" target="_blank" rel="noopener">回形打印二维数组</a></h3><blockquote>
+<p>思路：递归实现，分别打印每一圈</p>
+</blockquote>
+<h3 id="APK内容"><a href="#APK内容" class="headerlink" title="APK内容"></a>APK内容</h3><p><img src="https://user-gold-cdn.xitu.io/2018/6/3/163c5cfdf016c8bc?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></p>
+<h3 id="class文件如何转化成dex"><a href="#class文件如何转化成dex" class="headerlink" title="class文件如何转化成dex"></a><a href="https://www.jianshu.com/p/2eb518941681" target="_blank" rel="noopener">class文件如何转化成dex</a></h3><blockquote>
+<p>使用build tools 下的dx工具</p>
+</blockquote>
+<pre><code>class 和dex文件对比:
+1. 都是二进制文件
+2. class文件存在容与，dex文件将整个工程的类信息整合到了一起，去掉了冗余
+复制代码</code></pre><h3 id="硬件加速"><a href="#硬件加速" class="headerlink" title="硬件加速"></a><a href="https://www.jianshu.com/p/40f660e17a73" target="_blank" rel="noopener">硬件加速</a></h3><blockquote>
+<ol>
+<li>随便写点凑个数吧=-=</li>
+<li>硬件加速的四个级别：Application/Activity/Window/View</li>
+</ol>
+</blockquote>
+<h3 id="为什么选择Binder作为通信方式"><a href="#为什么选择Binder作为通信方式" class="headerlink" title="为什么选择Binder作为通信方式"></a><a href="https://blog.csdn.net/starter110/article/details/49616701" target="_blank" rel="noopener">为什么选择Binder作为通信方式</a></h3><blockquote>
+<ol>
+<li>binder效率更高：socket是一个通用接口，效率低；管道和队列内存拷贝两次，效率低；共享内存控制复杂</li>
+<li>binder更加安全：binder可以建立私有通道，通过uid/pid验证身份</li>
+</ol>
+</blockquote>
+<h2 id="LeakCanary原-理"><a href="#LeakCanary原-理" class="headerlink" title="LeakCanary原  理"></a>LeakCanary<a href="https://blog.csdn.net/cloud_huan/article/details/53081120" target="_blank" rel="noopener">原</a>  <a href="https://www.jianshu.com/p/5ee6b471970e" target="_blank" rel="noopener">理</a></h2><hr>
+<blockquote>
+<ol>
+<li>在Application中注册一个ActivityLifecycleCallbacks来监听Activity的销毁</li>
+<li>通过IdleHandler在主线程空闲时进行检测</li>
+<li><a href="https://www.cnblogs.com/huanyi0723/p/7050555.html" target="_blank" rel="noopener">检测是通过WeakReference实现的，如果没有被回收会再次调用gc再确认一遍</a></li>
+<li>确认有泄漏后，dump hprof文件，并开启一个进程IntentService通过HAHA进行分析</li>
+</ol>
+</blockquote>
+<h2 id="OkHttp（基于3-9版本）"><a href="#OkHttp（基于3-9版本）" class="headerlink" title="OkHttp（基于3.9版本）"></a>OkHttp（基于3.9版本）</h2><hr>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a><a href="http://liuwangshu.cn/application/network/5-okhttp2x.html" target="_blank" rel="noopener">使用</a></h3><h4 id="1-在gradle中添加依赖"><a href="#1-在gradle中添加依赖" class="headerlink" title="1. 在gradle中添加依赖"></a>1. 在gradle中添加依赖</h4><pre><code>compile &#39;com.squareup.okhttp3:okhttp:3.9.0&#39;
+compile &#39;com.squareup.okio:okio:1.13.0&#39;
+复制代码</code></pre><h4 id="2-创建OkHttpClient，并对timeout等进行设置"><a href="#2-创建OkHttpClient，并对timeout等进行设置" class="headerlink" title="2. 创建OkHttpClient，并对timeout等进行设置"></a>2. 创建OkHttpClient，并对timeout等进行设置</h4><pre><code>File sdcache = getExternalCacheDir();
+int cacheSize = 10 * 1024 * 1024;
+OkHttpClient.Builder builder = new OkHttpClient.Builder()
+        .connectTimeout(15, TimeUnit.SECONDS)
+        .writeTimeout(20, TimeUnit.SECONDS)
+        .readTimeout(20, TimeUnit.SECONDS)
+        .cache(new Cache(sdcache.getAbsoluteFile(), cacheSize));
+OkHttpClient mOkHttpClient=builder.build();
+复制代码</code></pre><h4 id="3-创建Request"><a href="#3-创建Request" class="headerlink" title="3. 创建Request"></a>3. 创建Request</h4><ul>
+<li>get请求</li>
+</ul>
+<pre><code>Request request = new Request.Builder()
+            .url(&quot;http://www.baidu.com&quot;)
+            .build();
+复制代码</code></pre><ul>
+<li>post请求（post需要传入requsetBody）</li>
+</ul>
+<pre><code>RequestBody formBody = new FormEncodingBuilder()
+            .add(&quot;size&quot;, &quot;10&quot;)
+            .build();
+    Request request = new Request.Builder()
+            .url(&quot;http://api.1-blog.com/biz/bizserver/article/list.do&quot;)
+            .post(formBody)
+            .build();
+复制代码</code></pre><h4 id="4-创建Call并执行（okHttp的返回结果并没有在ui线程）"><a href="#4-创建Call并执行（okHttp的返回结果并没有在ui线程）" class="headerlink" title="4. 创建Call并执行（okHttp的返回结果并没有在ui线程）"></a>4. 创建Call并执行（okHttp的返回结果并没有在ui线程）</h4><pre><code>Call call = mOkHttpClient.newCall(request);
+复制代码</code></pre><ul>
+<li>同步执行</li>
+</ul>
+<pre><code>Response mResponse=call.execute();
+        if (mResponse.isSuccessful()) {     
+           return mResponse.body().string();
+       } else {
+           throw new IOException(&quot;Unexpected code &quot; + mResponse);
+       }
+复制代码</code></pre><ul>
+<li>异步执行</li>
+</ul>
+<pre><code>call.enqueue(new Callback() {
+        @Override
+        public void onFailure(Request request, IOException e) {
+        }
+        @Override
+        public void onResponse(Response response) throws IOException {
+            String str = response.body().string();
+            Log.i(&quot;wangshu&quot;, str);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(getApplicationContext(), &quot;请求成功&quot;, Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    });
+复制代码</code></pre><h4 id="4-封装"><a href="#4-封装" class="headerlink" title="4. 封装"></a>4. 封装</h4><p>因为以下原因，所以我们需要封装：</p>
+<ul>
+<li>避免重复代码编写</li>
+<li>请求的回调改为UI线程</li>
+<li>其他需要的逻辑：例如加解密等</li>
+</ul>
+<h3 id="OkHttp中的设计模式"><a href="#OkHttp中的设计模式" class="headerlink" title="OkHttp中的设计模式"></a>OkHttp中的设计模式</h3><ol>
+<li>Builder模式：OkHttpClient 和Request等都是通过Builder模式创建的</li>
+<li>责任链模式：拦截器通过责任链模式进行工作</li>
+<li>门面模式：整体采用门面模式，OkHttpClient为门面，向子系统委派任务</li>
+<li>享元模式：连接池等采用了享元模式</li>
+<li>其他：工厂模式、代理模式等</li>
+</ol>
+<h3 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a><a href="http://liuwangshu.cn/application/network/7-okhttp3-sourcecode.html" target="_blank" rel="noopener">源码分析</a></h3><h4 id="1-Call"><a href="#1-Call" class="headerlink" title="1. Call"></a>1. Call</h4><ul>
+<li>Call的实现类为RealCall</li>
+<li>在执行execute或者enqueue时，会取出okHttpClient中的Dispatcher执行对应的方法</li>
+</ul>
+<pre><code>client.dispatcher().enqueue(new AsyncCall(responseCallback, forWebSocket));
+复制代码</code></pre><h4 id="2-Diapatcher"><a href="#2-Diapatcher" class="headerlink" title="2. Diapatcher"></a>2. Diapatcher</h4><ul>
+<li>Diapatcher在OkHttpClient build时进行初始化</li>
+<li>Dispatcher负责进行任务调度，内部维护一个线程池，处理并发请求</li>
+<li>Dispatcher内部有三个队列</li>
+</ul>
+<pre><code>/** 将要运行的异步请求队列 */
+private final Deque&lt;AsyncCall&gt; readyAsyncCalls = new ArrayDeque&lt;&gt;();
+/**正在运行的异步请求队列 */
+private final Deque&lt;AsyncCall&gt; runningAsyncCalls = new ArrayDeque&lt;&gt;();
+/** 正在运行的同步请求队列 */
+private final Deque&lt;RealCall&gt; runningSyncCalls = new ArrayDeque&lt;&gt;();
+复制代码</code></pre><ul>
+<li>执行时，线程会调用AsyncCall的excute方法</li>
+</ul>
+<h4 id="3-AsyncCall"><a href="#3-AsyncCall" class="headerlink" title="3. AsyncCall"></a>3. AsyncCall</h4><ul>
+<li>AsyncCall是RealCall的一个内部类，实现了Runnalbe接口</li>
+<li>AsyncCall 通过 getResponseWithInterceptorChain方法取得Response</li>
+<li>执行完毕后通过client.dispatcher().finished(this)；将自身从dispatcher队列中取出，并取出下一个加入相应队列</li>
+</ul>
+<pre><code>//AsyncCall 的excute方法
+@Override protected void execute() {
+  boolean signalledCallback = false;
+  try {
+    Response response = getResponseWithInterceptorChain(forWebSocket);
+    if (canceled) {
+      signalledCallback = true;
+      responseCallback.onFailure(RealCall.this, new IOException(&quot;Canceled&quot;));
+    } else {
+      signalledCallback = true;
+      responseCallback.onResponse(RealCall.this, response);
+    }
+  } catch (IOException e) {
+    if (signalledCallback) {
+      // Do not signal the callback twice!
+      logger.log(Level.INFO, &quot;Callback failure for &quot; + toLoggableString(), e);
+    } else {
+      responseCallback.onFailure(RealCall.this, e);
+    }
+  } finally {
+    client.dispatcher().finished(this);
+  }
+}
+
+复制代码</code></pre><h4 id="4-getResponseWithInterceptorChain"><a href="#4-getResponseWithInterceptorChain" class="headerlink" title="4. getResponseWithInterceptorChain"></a>4. getResponseWithInterceptorChain</h4><p>getResponseWithInterceptorChain是用责任链的方式，执行拦截器，对请求和请求结果进行处理</p>
+<ul>
+<li>getResponseWithInterceptorChain 中创建拦截器，并创建第一个RealInterceptorChain，执行其proceed方法</li>
+</ul>
+<pre><code>Response getResponseWithInterceptorChain() throws IOException {
+    // Build a full stack of interceptors.
+    List&lt;Interceptor&gt; interceptors = new ArrayList&lt;&gt;();
+    interceptors.addAll(client.interceptors());
+    interceptors.add(retryAndFollowUpInterceptor);
+    interceptors.add(new BridgeInterceptor(client.cookieJar()));
+    interceptors.add(new CacheInterceptor(client.internalCache()));
+    interceptors.add(new ConnectInterceptor(client));
+    if (!forWebSocket) {
+      interceptors.addAll(client.networkInterceptors());
+    }
+    interceptors.add(new CallServerInterceptor(forWebSocket));
+
+    Interceptor.Chain chain = new RealInterceptorChain(interceptors, null, null, null, 0,
+        originalRequest, this, eventListener, client.connectTimeoutMillis(),
+        client.readTimeoutMillis(), client.writeTimeoutMillis());
+
+    return chain.proceed(originalRequest);
+  }
+复制代码</code></pre><ul>
+<li>RealInterceptorChain的proceed方法中，会取出拦截器，并创建下一个Chain，将其作为参数传给拦截器的intercept方法</li>
+</ul>
+<pre><code>  // If there&#39;s another interceptor in the chain, call that.
+  if (index &lt; client.interceptors().size()) {
+    Interceptor.Chain chain = new ApplicationInterceptorChain(index + 1, request, forWebSocket);
+    //从拦截器列表取出拦截器
+    Interceptor interceptor = client.interceptors().get(index);
+    Response interceptedResponse = interceptor.intercept(chain);
+
+    if (interceptedResponse == null) {
+      throw new NullPointerException(&quot;application interceptor &quot; + interceptor
+          + &quot; returned null&quot;);
+    }
+
+    return interceptedResponse;
+  }
+
+  // No more interceptors. Do HTTP.
+  return getResponse(request, forWebSocket);
+}
+
+复制代码</code></pre><h3 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h3><h4 id="1-自定义拦截器"><a href="#1-自定义拦截器" class="headerlink" title="1. 自定义拦截器"></a>1. <a href="https://www.jianshu.com/p/d04b463806c8" target="_blank" rel="noopener">自定义拦截器</a></h4><ul>
+<li>自定义拦截器分为两类，interceptor和networkInterceptor（区别：networkInterceptor处理网络相关任务，如果response直接从缓存返回了，那么有可能不会执行networkInterceptor）</li>
+<li>自定义方式：实现Interceptor，重写intercept方法，并注册拦截器</li>
+</ul>
+<h4 id="2-系统拦截器"><a href="#2-系统拦截器" class="headerlink" title="2. 系统拦截器"></a>2. <a href="https://blog.csdn.net/lepaitianshi/article/details/72457928" target="_blank" rel="noopener">系统拦截器</a></h4><ul>
+<li>RetryAndFollowUpInterceptor：进行失败重试和重定向</li>
+<li>BridgeInterceptor：添加头部信息</li>
+<li>CacheInterceptor：处理缓存</li>
+<li>ConnectInterceptor：获取可用的connection实例</li>
+<li>CallServerInterceptor：发起请求</li>
+</ul>
+<h3 id="连接池复用"><a href="#连接池复用" class="headerlink" title="连接池复用"></a><a href="http://liuwangshu.cn/application/network/8-okhttp3-sourcecode2.html" target="_blank" rel="noopener">连接池复用</a></h3><p>在ConnectInterceptor中，我们获取到了connection的实例，该实例是从ConnectionPool中取得</p>
+<h4 id="1-Connection"><a href="#1-Connection" class="headerlink" title="1. Connection"></a>1. Connection</h4><ul>
+<li>Connection 是客户端和服务器建立的数据通路，一个Connection上可能存在几个链接</li>
+<li>Connection的实现类是RealConnection，是socket物理连接的包装</li>
+<li>Connection内部维持着一个List<Reference>引用</li>
+</ul>
+<h4 id="2-StreamAllocation"><a href="#2-StreamAllocation" class="headerlink" title="2. StreamAllocation"></a>2. StreamAllocation</h4><p>StreamAllocation是Connection维护的连接，以下是类内注解</p>
+<pre><code> &lt;ul&gt;
+ *     &lt;li&gt;&lt;strong&gt;Connections:&lt;/strong&gt; physical socket connections to remote servers. These are
+ *         potentially slow to establish so it is necessary to be able to cancel a connection
+ *         currently being connected.
+ *     &lt;li&gt;&lt;strong&gt;Streams:&lt;/strong&gt; logical HTTP request/response pairs that are layered on
+ *         connections. Each connection has its own allocation limit, which defines how many
+ *         concurrent streams that connection can carry. HTTP/1.x connections can carry 1 stream
+ *         at a time, HTTP/2 typically carry multiple.
+ *     &lt;li&gt;&lt;strong&gt;Calls:&lt;/strong&gt; a logical sequence of streams, typically an initial request and
+ *         its follow up requests. We prefer to keep all streams of a single call on the same
+ *         connection for better behavior and locality.
+ * &lt;/ul&gt;
+复制代码</code></pre><h4 id="3-ConnectionPool"><a href="#3-ConnectionPool" class="headerlink" title="3. ConnectionPool"></a>3. ConnectionPool</h4><p>ConnectionPool通过Address等来查找有没有可以复用的Connection，同时维护一个线程池，对Connection做回收工作</p>
+<h2 id="Retrofit"><a href="#Retrofit" class="headerlink" title="Retrofit"></a>Retrofit</h2><hr>
+<p>Retrofit帮助我们对OkHttp进行了封装，使网络请求更加方便</p>
+<h3 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a><a href="https://www.jianshu.com/p/a3e162261ab6" target="_blank" rel="noopener">使用</a></h3><h4 id="1-添加依赖"><a href="#1-添加依赖" class="headerlink" title="1. 添加依赖"></a>1. 添加依赖</h4><pre><code>dependencies {
+    compile &#39;com.squareup.retrofit2:retrofit:2.0.2&#39;
+  }
+复制代码</code></pre><h4 id="2-创建Retrofit实例"><a href="#2-创建Retrofit实例" class="headerlink" title="2. 创建Retrofit实例"></a>2. 创建Retrofit实例</h4><pre><code>Retrofit retrofit = new Retrofit.Builder() 
+ .baseUrl(&quot;http://fanyi.youdao.com/&quot;) // 设置网络请求的Url地址
+ .addConverterFactory(GsonConverterFactory.create()) // 设置数据解析器 
+ .addCallAdapterFactory(RxJavaCallAdapterFactory.create()) // 支持RxJava平台 .build();
+复制代码</code></pre><h4 id="3-创建网络接口"><a href="#3-创建网络接口" class="headerlink" title="3. 创建网络接口"></a>3. 创建网络接口</h4><pre><code>@GET(&quot;user&quot;)
+Call&lt;User&gt; getUser(@Header(&quot;Authorization&quot;) String authorization)
+复制代码</code></pre><h4 id="4-创建Call"><a href="#4-创建Call" class="headerlink" title="4. 创建Call"></a>4. 创建Call</h4><pre><code> GetRequest_Interface request = retrofit.create(GetRequest_Interface.class);
+//对 发送请求 进行封装
+Call&lt;Reception&gt; call = request.getCall();
+复制代码</code></pre><h4 id="5-执行Call的请求方法"><a href="#5-执行Call的请求方法" class="headerlink" title="5. 执行Call的请求方法"></a>5. 执行Call的请求方法</h4><pre><code>//发送网络请求(异步) call.enqueue(new Callback&lt;Translation&gt;() { 
+//请求成功时回调
+ @Override 
+public void onResponse(Call&lt;Translation&gt; call, Response&lt;Translation&gt; response) { 
+   //请求处理,输出结果
+    response.body().show(); 
+ } 
+ //请求失败时候的回调 
+ @Override 
+ public void onFailure(Call&lt;Translation&gt; call, Throwable throwable) { 
+     System.out.println(&quot;连接失败&quot;); 
+ } 
+ });
+
+ // 发送网络请求（同步） Response&lt;Reception&gt; response = call.execute();
+
+复制代码</code></pre><h3 id="源码解析"><a href="#源码解析" class="headerlink" title="源码解析"></a><a href="https://www.jianshu.com/p/0c055ad46b6c" target="_blank" rel="noopener">源码解析</a></h3><h4 id="1-Retrofit"><a href="#1-Retrofit" class="headerlink" title="1. Retrofit"></a>1. Retrofit</h4><p>Retrofit 通过builder模式创建，我们可以对其进行各种设置：</p>
+<ul>
+<li>baseUrl：请求地址的头部，必填</li>
+<li>callFactory：网络请求工厂（不进行设置的话默认会生成一个OkHttpClient）</li>
+<li>adapterFactories：网络请求适配器工厂的集合，这里有适配器因为Retrofit不仅支持Android，还支持Ios等其他平台（不进行设置的话会根据平台自动生成）</li>
+<li>converterFactories：数据转换器工厂的集合（将网络返回的数据转换成我们需要的类）</li>
+<li>callbackExecutor：回调方法执行器（Android平台默认通过Handler发送到主线程执行）</li>
+</ul>
+<h4 id="2-Call"><a href="#2-Call" class="headerlink" title="2. Call"></a>2. Call</h4><p>我们的每个method对应一个Call， Call的创建分为两步：</p>
+<ul>
+<li>retorfit.create(myInfterfaceClass.class)创建我们网络请求接口类的实例</li>
+<li>调用对应方法拿到对应网络请求的Call</li>
+</ul>
+<p>关键在第一步，第一步是通过动态代理实现的</p>
+<pre><code>public &lt;T&gt; T create(final Class&lt;T&gt; service) {
+  Utils.validateServiceInterface(service);
+  if (validateEagerly) {
+    eagerlyValidateMethods(service);
+  }
+  return (T) Proxy.newProxyInstance(service.getClassLoader(), new Class&lt;?&gt;[] { service },
+      new InvocationHandler() {
+        private final Platform platform = Platform.get();
+
+        @Override public Object invoke(Object proxy, Method method, Object... args)
+            throws Throwable {
+          // If the method is a method from Object then defer to normal invocation.
+          if (method.getDeclaringClass() == Object.class) {
+            return method.invoke(this, args);
+          }
+          if (platform.isDefaultMethod(method)) {
+            return platform.invokeDefaultMethod(method, service, proxy, args);
+          }
+          ServiceMethod serviceMethod = loadServiceMethod(method);//1
+          OkHttpCall okHttpCall = new OkHttpCall&lt;&gt;(serviceMethod, args);
+          return serviceMethod.callAdapter.adapt(okHttpCall);
+        }
+      });
+}
+复制代码</code></pre><ul>
+<li>通过loadServiceMethod方法生成mehtod对应的ServiceMethod</li>
+<li>将ServiceMethod和方法参数传进OkHttpCall生成OkHttpCall</li>
+<li>调用callAdapter方法对OkHttpCall进行处理并返回</li>
+</ul>
+<h5 id="1-ServiceMethod"><a href="#1-ServiceMethod" class="headerlink" title="1. ServiceMethod"></a>1. ServiceMethod</h5><p>loadServiceMethod方法会首先在缓存里查找是否有该method对应的ServiceMethod，没有的话调用build方法创建一个</p>
+<pre><code>ServiceMethod loadServiceMethod(Method method) {
+ ServiceMethod result; 
+ // 设置线程同步锁 
+ synchronized (serviceMethodCache) { 
+ result = serviceMethodCache.get(method);
+  // ServiceMethod类对象采用了单例模式进行创建 
+  // 即创建ServiceMethod对象前，先看serviceMethodCache有没有缓存之前创建过的网络请求实例 
+  // 若没缓存，则通过建造者模式创建 
+  serviceMethod 对象 if (result == null) { 
+  // 下面会详细介绍ServiceMethod生成实例的过程 
+  result = new ServiceMethod.Builder(this, method).build(); 
+  serviceMethodCache.put(method, result); 
+   } 
+  }
+
+  return result;
+}
+
+复制代码</code></pre><p>ServiceMethod的创建过程即是对method的解析过程，解析过程包括：对注解的解析，寻找合适的CallAdapter和Convert等</p>
+<h5 id="2-OkHttpCall"><a href="#2-OkHttpCall" class="headerlink" title="2. OkHttpCall"></a>2. OkHttpCall</h5><p>OkHttpCall实现了Call接口，当执行excute或enqueue请求命令时，内部通过传入的CallFactory（OkHttpClient）执行网络请求</p>
+<h5 id="3-callAdapter"><a href="#3-callAdapter" class="headerlink" title="3. callAdapter"></a>3. callAdapter</h5><p>如果我们没有对CallAdapter进行设置，它的值将是Android平台的默认设置，其adapt方法如下</p>
+<pre><code>public &lt;R&gt; Call&lt;R&gt; adapt(Call&lt;R&gt; call) { 
+    return new ExecutorCallbackCall&lt;&gt;(callbackExecutor, call); 
+} 
+
+
+ExecutorCallbackCall(Executor callbackExecutor, Call&lt;T&gt; delegate) {
+
+ this.delegate = delegate; 
+ // 把上面创建并配置好参数的OkhttpCall对象交给静态代理delegate 
+ // 静态代理和动态代理都属于代理模式 
+ // 静态代理作用：代理执行被代理者的方法，且可在要执行的方法前后加入自己的动作，进行对系统功能的拓展 
+
+ this.callbackExecutor = callbackExecutor; 
+ // 传入上面定义的回调方法执行器 
+ // 用于进行线程切换 }
+
+复制代码</code></pre><p>ExecutorCallbackCall对OkHttpCall进行了装饰，会调用CallBackExcutor对OkHttpCall执行的返回结果进行处理，使其位于主线程</p>
+<h3 id="自定义Convert和CallAdapter"><a href="#自定义Convert和CallAdapter" class="headerlink" title="自定义Convert和CallAdapter"></a><a href="https://www.jianshu.com/p/308f3c54abdd" target="_blank" rel="noopener">自定义Convert和CallAdapter</a></h3><h2 id="Fresco"><a href="#Fresco" class="headerlink" title="Fresco"></a><a href="https://www.fresco-cn.org/" target="_blank" rel="noopener">Fresco</a></h2><hr>
+<p>Fresco是一个图片加载库，可以帮助我们加载图片显示，控制多线程，以及管理缓存和内存等</p>
+<h3 id="Fresco使用"><a href="#Fresco使用" class="headerlink" title="Fresco使用"></a><a href="https://www.fresco-cn.org/docs/index.html" target="_blank" rel="noopener">Fresco使用</a></h3><ol>
+<li>引入依赖</li>
+</ol>
+<pre><code>dependencies {
+  // 其他依赖
+  compile &#39;com.facebook.fresco:fresco:0.12.0&#39;
+   // 在 API &lt; 14 上的机器支持 WebP 时，需要添加
+  compile &#39;com.facebook.fresco:animated-base-support:0.12.0&#39;
+
+  // 支持 GIF 动图，需要添加
+  compile &#39;com.facebook.fresco:animated-gif:0.12.0&#39;
+
+  // 支持 WebP （静态图+动图），需要添加
+  compile &#39;com.facebook.fresco:animated-webp:0.12.0&#39;
+  compile &#39;com.facebook.fresco:webpsupport:0.12.0&#39;
+
+  // 仅支持 WebP 静态图，需要添加
+  compile &#39;com.facebook.fresco:webpsupport:0.12.0&#39;
+}
+
+复制代码</code></pre><ol>
+<li>初始化</li>
+</ol>
+<pre><code>Fresco.initialize(Context context);
+复制代码</code></pre><ol>
+<li>使用SimpleView</li>
+</ol>
+<pre><code>&lt;com.facebook.drawee.view.SimpleDraweeView
+    android:id=&quot;@+id/my_image_view&quot;
+    android:layout_width=&quot;130dp&quot;
+    android:layout_height=&quot;130dp&quot;
+    fresco:placeholderImage=&quot;@drawable/my_drawable&quot;
+  /&gt;
+复制代码</code></pre><ol>
+<li>加载图片</li>
+</ol>
+<pre><code>Uri uri = Uri.parse(&quot;https://raw.githubusercontent.com/facebook/fresco/gh-pages/static/logo.png&quot;);
+SimpleDraweeView draweeView = (SimpleDraweeView) findViewById(R.id.my_image_view);
+draweeView.setImageURI(uri);
+
+复制代码</code></pre><ol>
+<li>以上是Fresco的基本加载流程，此外，我们可以定制加载和显示的各个环节</li>
+</ol>
+<p>Fresco由两部分组成，Drawees负责图片的呈现，ImagePipeline负责图片的下载解码和内存管理</p>
+<h3 id="Drawees"><a href="#Drawees" class="headerlink" title="Drawees"></a><a href="https://www.fresco-cn.org/docs/concepts.html" target="_blank" rel="noopener">Drawees</a></h3><p>Drawees 负责图片的呈现。它由三个元素组成，有点像MVC模式。</p>
+<h4 id="DraweeView"><a href="#DraweeView" class="headerlink" title="DraweeView"></a>DraweeView</h4><ul>
+<li>继承于 View, 负责图片的显示。</li>
+<li>一般情况下，使用 SimpleDraweeView 即可。 你可以在 XML 或者在 Java 代码中使用它，通过 setImageUri 给它设置一个 URI 来使用，这里有简单的入门教学：开始使用</li>
+<li>你可以使用 XML属性来达到各式各样的效果。</li>
+</ul>
+<h4 id="DraweeHierarchy"><a href="#DraweeHierarchy" class="headerlink" title="DraweeHierarchy"></a>DraweeHierarchy</h4><ul>
+<li>DraweeHierarchy 用于组织和维护最终绘制和呈现的 Drawable 对象，相当于MVC中的M。</li>
+<li>你可以通过它来在Java代码中自定义图片的展示</li>
+</ul>
+<h4 id="DraweeController"><a href="#DraweeController" class="headerlink" title="DraweeController"></a>DraweeController</h4><ul>
+<li>DraweeController 负责和 image loader 交互（ Fresco 中默认为 image pipeline, 当然你也可以指定别的），可以创建一个这个类的实例，来实现对所要显示的图片做更多的控制。</li>
+<li>如果你还需要对Uri加载到的图片做一些额外的处理，那么你会需要这个类的。</li>
+</ul>
+<h4 id="DraweeControllerBuilder"><a href="#DraweeControllerBuilder" class="headerlink" title="DraweeControllerBuilder"></a>DraweeControllerBuilder</h4><ul>
+<li>DraweeControllers 由 DraweeControllerBuilder 采用 Builder 模式创建，创建之后，不可修改。具体参见: 使用ControllerBuilder。</li>
+</ul>
+<h4 id="Listeners"><a href="#Listeners" class="headerlink" title="Listeners"></a>Listeners</h4><ul>
+<li>使用 ControllerListener 的一个场景就是设置一个 Listener监听图片的下载。</li>
+</ul>
+<h3 id="ImagePipeline"><a href="#ImagePipeline" class="headerlink" title="ImagePipeline"></a>ImagePipeline</h3><ul>
+<li>Fresco 的 Image Pipeline 负责图片的获取和管理。图片可以来自远程服务器，本地文件，或者Content Provider，本地资源。压缩后的文件缓存在本地存储中，Bitmap数据缓存在内存中。</li>
+<li>在5.0系统以下，Image Pipeline 使用 pinned purgeables 将Bitmap数据避开Java堆内存，存在ashmem中。这要求图片不使用时，要显式地释放内存</li>
+<li>SimpleDraweeView自动处理了这个释放过程，所以没有特殊情况，尽量使用SimpleDraweeView，在特殊的场合，如果有需要，也可以直接控制Image Pipeline。</li>
+<li>ImagePipeline加载图片流程</li>
+</ul>
+<blockquote>
+<ol>
+<li>检查内存缓存，如有，返回</li>
+</ol>
+</blockquote>
+<ol>
+<li>后台线程开始后续工作</li>
+<li>检查是否在未解码内存缓存中。如有，解码，变换，返回，然后缓存到内存缓存中。</li>
+<li>检查是否在磁盘缓存中，如果有，变换，返回。缓存到未解码缓存和内存缓存中。</li>
+<li>从网络或者本地加载。加载完成后，解码，变换，返回。存到各个缓存中。</li>
+</ol>
+<p>![img](data:image/svg+xml;utf8,<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="480" height="342"></svg>)</p>
+<h4 id="ImagePipeline的线程池"><a href="#ImagePipeline的线程池" class="headerlink" title="ImagePipeline的线程池"></a>ImagePipeline的线程池</h4><p>Image pipeline 默认有3个线程池:</p>
+<blockquote>
+<ol>
+<li>3个线程用于网络下载</li>
+</ol>
+</blockquote>
+<ol>
+<li>2个线程用于磁盘操作: 本地文件的读取，磁盘缓存操作。</li>
+<li>2个线程用于CPU相关的操作: 解码，转换，以及后处理等后台操作。</li>
+</ol>
+<h4 id="ImagePipeline的-缓存"><a href="#ImagePipeline的-缓存" class="headerlink" title="ImagePipeline的 缓存"></a>ImagePipeline的 缓存</h4><p>ImagePipeLine有三级缓存</p>
+<blockquote>
+<ol>
+<li>解码后的Bitmap缓存</li>
+<li>未解码图片的内存缓存</li>
+<li>磁盘缓存</li>
+</ol>
+</blockquote>
+<h3 id="对比"><a href="#对比" class="headerlink" title="对比"></a><a href="https://www.jianshu.com/p/6729dc17586b" target="_blank" rel="noopener">对比</a></h3><h4 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h4><p>Fresco 相对于Glide/Picaso等拥有更多的功能，如图片的渐进式加载/动图/圆角等，</p>
+<h4 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h4><p>Fresco采用三级缓存：</p>
+<blockquote>
+<ol>
+<li>解码后的Bitmap缓存</li>
+<li>未解码图片的内存缓存</li>
+<li>磁盘缓存</li>
+</ol>
+</blockquote>
+<p>Glide两级缓存：</p>
+<blockquote>
+<ol>
+<li>根据ImageView控件尺寸获得对应的大小的bitmap来展示，可以缓存原始数据或者resize后数据</li>
+<li>磁盘缓存</li>
+</ol>
+</blockquote>
+<h4 id="使用-2"><a href="#使用-2" class="headerlink" title="使用"></a>使用</h4><p>Fresco通过CloseableReference管理图片，通过图片控件DraweeView来显示图片和控制图片释放，虽然扩展性高，但是扩展起来麻烦；对项目有一定侵入性</p>
+<h2 id="EventBus"><a href="#EventBus" class="headerlink" title="EventBus"></a>EventBus</h2><hr>
+<p>EventBus使用了观察者模式，方便我们项目中进行数据传递和通信</p>
+<h3 id="使用-3"><a href="#使用-3" class="headerlink" title="使用"></a><a href="https://www.jianshu.com/p/acfe78296bb5" target="_blank" rel="noopener">使用</a></h3><ol>
+<li>添加依赖</li>
+</ol>
+<pre><code>compile &#39;org.greenrobot:eventbus:3.0.0&#39;
+复制代码</code></pre><ol>
+<li>注册和解绑</li>
+</ol>
+<pre><code>EventBus.getDefault().register(this);
+
+EventBus.getDefault().unregister(this);
+复制代码</code></pre><ol>
+<li>添加订阅消息方法</li>
+</ol>
+<pre><code>@Subscribe(threadMode = ThreadMode.MAIN) 
+public void onEvent(MessageEvent event) {
+    /* Do something */
+}
+复制代码</code></pre><ol>
+<li>发送消息</li>
+</ol>
+<pre><code>EventBus.getDefault().post(new MessageEvent(&quot;Hello !.....&quot;));
+
+复制代码</code></pre><h4 id="Subscribe注解"><a href="#Subscribe注解" class="headerlink" title="@Subscribe注解"></a>@Subscribe注解</h4><p>该注解内部有三个成员，分别是threadMode、sticky、priority。</p>
+<blockquote>
+<ol>
+<li>threadMode代表订阅方法所运行的线程</li>
+<li>sticky代表是否是粘性事件</li>
+<li>priority代表优先级</li>
+</ol>
+</blockquote>
+<h4 id="threadMode"><a href="#threadMode" class="headerlink" title="threadMode"></a>threadMode</h4><blockquote>
+<ol>
+<li>POSTING:表示订阅方法运行在发送事件的线程。</li>
+<li>MAIN：表示订阅方法运行在UI线程，由于UI线程不能阻塞，因此当使用MAIN的时候，订阅方法不应该耗时过长。</li>
+<li>BACKGROUND：表示订阅方法运行在后台线程，如果发送的事件线程不是UI线程，那么就使用该线程；如果发送事件的线程是UI线程，那么新建一个后台线程来调用订阅方法。</li>
+<li>ASYNC：订阅方法与发送事件始终不在同一个线程，即订阅方法始终会使用新的线程来运行。</li>
+</ol>
+</blockquote>
+<h4 id="sticky-粘性事件"><a href="#sticky-粘性事件" class="headerlink" title="sticky 粘性事件"></a>sticky 粘性事件</h4><p>在注册之前便把事件发生出去，等到注册之后便会收到最近发送的粘性事件（必须匹配）。注意：只会接收到最近发送的一次粘性事件，之前的会接受不到,demo</p>
+<h3 id="源码解析-1"><a href="#源码解析-1" class="headerlink" title="源码解析"></a><a href="https://www.jianshu.com/p/bda4ed3017ba" target="_blank" rel="noopener">源码解析</a></h3><p>参见链接</p>
+<h3 id="性能-1"><a href="#性能-1" class="headerlink" title="性能"></a><a href="https://segmentfault.com/a/1190000005089229" target="_blank" rel="noopener">性能</a></h3><ol>
+<li>EventBus通过反射的方式对@Subscribe方法进行解析。</li>
+<li>默认情况下，解析是运行时进行的，但是我们也可以通过设置和加载依赖库，使其编译时形成索引，其性能会大大提升</li>
+</ol>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://xuhaoyang.github.io" rel="external nofollow noreferrer">ECM</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://xuhaoyang.github.io/2020/03/21/android-interview/">https://xuhaoyang.github.io/2020/03/21/android-interview/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="https://xuhaoyang.github.io" target="_blank">ECM</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Android/">
+                                    <span class="chip bg-color">Android</span>
+                                </a>
+                            
+                                <a href="/tags/Java/">
+                                    <span class="chip bg-color">Java</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%9F%A5%E8%AF%86/">
+                                    <span class="chip bg-color">知识</span>
+                                </a>
+                            
+                                <a href="/tags/%E9%9D%A2%E8%AF%95/">
+                                    <span class="chip bg-color">面试</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/03/21/java-android-final/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="理解final在Java和Android中修饰局部变量的意义">
+                        
+                        <span class="card-title">理解final在Java和Android中修饰局部变量的意义</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            final在Java和Android中修饰局部变量的意义Q：为什么经常在Android项目中看到final 对变量进行修饰？
+在Java中，有四种内部类：
+
+静态内部类（static inner class）
+成员内部类（Method in
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-21
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%80%BB%E7%BB%93/" class="post-category">
+                                    总结
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%9F%A5%E8%AF%86/">
+                        <span class="chip bg-color">知识</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/03/19/java-interview/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Java面试知识">
+                        
+                        <span class="card-title">Java面试知识</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Java 面试基础知识Java设计思想0. OOP是什么
+面向对象编程（Object Oriented Programming）
+
+1.面向对象的特征有哪些面向对象的特征有：抽象、封装、继承、多态
+
+
+抽象：抽象是将一类对象的共同特征总结出
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-19
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%80%BB%E7%BB%93/" class="post-category">
+                                    总结
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%9F%A5%E8%AF%86/">
+                        <span class="chip bg-color">知识</span>
+                    </a>
+                    
+                    <a href="/tags/%E9%9D%A2%E8%AF%95/">
+                        <span class="chip bg-color">面试</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="https://xuhaoyang.github.io" target="_blank">ECM</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
