@@ -5,10 +5,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="Android 项目 Build 总结, 记录小站">
-    <meta name="description" content="Android 项目 Build 总结Gradle获得当前flavor nameimport java.util.regex.Matcher
-import java.util.regex.Pattern
-
-def getCurrentFla">
+    <meta name="description" content="Android 项目 Build 总结Gradle查询当前项目依赖./gradlew module:dependencies最后会询问是否生成在线的doc yes
+./gradlew build --scan获得当前flavor namei">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -429,7 +427,8 @@ def getCurrentFla">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Android-项目-Build-总结"><a href="#Android-项目-Build-总结" class="headerlink" title="Android 项目 Build 总结"></a>Android 项目 Build 总结</h1><h2 id="Gradle"><a href="#Gradle" class="headerlink" title="Gradle"></a>Gradle</h2><h3 id="获得当前flavor-name"><a href="#获得当前flavor-name" class="headerlink" title="获得当前flavor name"></a>获得当前flavor name</h3><pre><code>import java.util.regex.Matcher
+                <h1 id="Android-项目-Build-总结"><a href="#Android-项目-Build-总结" class="headerlink" title="Android 项目 Build 总结"></a>Android 项目 Build 总结</h1><h2 id="Gradle"><a href="#Gradle" class="headerlink" title="Gradle"></a>Gradle</h2><h3 id="查询当前项目依赖"><a href="#查询当前项目依赖" class="headerlink" title="查询当前项目依赖"></a>查询当前项目依赖</h3><pre><code>./gradlew module:dependencies</code></pre><p>最后会询问是否生成在线的doc yes</p>
+<pre><code>./gradlew build --scan</code></pre><h3 id="获得当前flavor-name"><a href="#获得当前flavor-name" class="headerlink" title="获得当前flavor name"></a>获得当前flavor name</h3><pre><code>import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 def getCurrentFlavor() {
