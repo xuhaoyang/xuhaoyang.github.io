@@ -436,6 +436,8 @@ Documents
 Movies
 Music
 </code></pre><h2 id="安装系统后"><a href="#安装系统后" class="headerlink" title="安装系统后"></a>安装系统后</h2><h3 id="解决APP第三方开发者无法在MacOS-10-15-运行"><a href="#解决APP第三方开发者无法在MacOS-10-15-运行" class="headerlink" title="解决APP第三方开发者无法在MacOS 10.15 运行"></a>解决APP第三方开发者无法在MacOS 10.15 运行</h3><pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> xattr -r -d com.apple.quarantine</code></pre>
+<p>解决APP认为自己不在/Application中</p>
+<pre class=" language-bash"><code class="language-bash"> xattr -rc</code></pre>
 <h3 id="黑苹果开启SSD-trim"><a href="#黑苹果开启SSD-trim" class="headerlink" title="黑苹果开启SSD trim"></a>黑苹果开启SSD trim</h3><pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> trimforce <span class="token function">enable</span></code></pre>
 <h2 id="HomeBrew"><a href="#HomeBrew" class="headerlink" title="HomeBrew"></a>HomeBrew</h2><h3 id="安装homebrew"><a href="#安装homebrew" class="headerlink" title="安装homebrew"></a>安装homebrew</h3><pre class=" language-bash"><code class="language-bash">/bin/bash -c <span class="token string">"<span class="token variable"><span class="token variable">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh<span class="token variable">)</span></span>"</span></code></pre>
 <h3 id="安装brew-cask"><a href="#安装brew-cask" class="headerlink" title="安装brew cask"></a>安装brew cask</h3><pre class=" language-bash"><code class="language-bash">brew cask</code></pre>
