@@ -475,7 +475,12 @@ HEAD is now at ea34578 add distributed</code></pre><p>当回退完成之后，�
 </ol>
 <p>因为我们创建Git版本库时，Git自动为我们创建了唯一一个<code>master</code>分支，所以，<code>git commit</code>就是往<code>master</code>分支上提交更改。可以简单理解为，需要提交的文件修改通通放到暂存区，然后，一次性提交暂存区的所有修改。</p>
 <h3 id="管理修改"><a href="#管理修改" class="headerlink" title="管理修改"></a>管理修改</h3><p>Git管理的是修改，当你用<code>git add</code>命令后，在工作区的第一次修改被放入暂存区，准备提交，但是，在工作区的第二次修改并没有放入暂存区，所以，<code>git commit</code>只负责把暂存区的修改提交了，也就是第一次的修改被提交了，第二次的修改不会被提交。</p>
-<h4 id="修改commit时间"><a href="#修改commit时间" class="headerlink" title="修改commit时间"></a>修改commit时间</h4><pre><code>git commit --amend --date=&quot;$(date -R)&quot;</code></pre><h3 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h3><p>使用命令git checkout – file可以丢弃工作的的修改。这里存在两种情况：</p>
+<h4 id="修改commit时间"><a href="#修改commit时间" class="headerlink" title="修改commit时间"></a>修改commit时间</h4><pre class=" language-shell"><code class="language-shell">git commit --amend --date="$(date -R)"</code></pre>
+<p>修改当前本地提交的 commit 时间</p>
+<pre class=" language-shell"><code class="language-shell">git commit --amend --date="2019-01-01T00:00:00+0800" -am "chore(md): 更新 README.md"</code></pre>
+<p>修改之前提交的某次 commit 时间，使用之前commit的Id</p>
+<pre class=" language-shell"><code class="language-shell">git commit --amend --date="2019-01-01T00:00:00+0800" -C d2b75280f11894c4c44dd80f9fd0982df461958a</code></pre>
+<h3 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h3><p>使用命令git checkout – file可以丢弃工作的的修改。这里存在两种情况：</p>
 <ol>
 <li>一种是file自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；</li>
 <li>一种是file已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。总之，就是让这个文件回到最近一次git commit或git add时的状态。</li>
@@ -626,7 +631,10 @@ To git@github.com:schacon/simplegit.git
 <p>首先需要基于feature创建一个新的分支，并指明新分支的最后一个commit：</p>
 <pre><code>git checkout -bnewbranch 62ecb3</code></pre><p>然后，rebase这个新分支的commit到master（–ontomaster）。76cada^ 指明你想从哪个特定的commit开始。</p>
 <pre><code>&gt; git rebase --ontomaster 76cada^</code></pre><p>得到的结果就是feature分支的commit 76cada ~62ecb3 都被合并到了master分支。</p>
-<h3 id="通过Git-rebase-i-修订历史commit"><a href="#通过Git-rebase-i-修订历史commit" class="headerlink" title="通过Git rebase -i 修订历史commit"></a>通过Git rebase -i 修订历史commit</h3><h2 id="标签管理"><a href="#标签管理" class="headerlink" title="标签管理"></a>标签管理</h2><p>发布一个版本时，我们通常先在版本库中打一个标签，这样，就唯一确定了打标签时刻的版本。将来无论什么时候，取某个标签的版本，就是把那个打标签的时刻的历史版本取出来。所以，标签也是版本库的一个快照。<br>Git的标签虽然是版本库的快照，但其实它就是指向某个<code>commit</code>的指针，<br>所以，创建和删除标签都是瞬间完成的。</p>
+<h3 id="通过Git-rebase-i-修订历史commit"><a href="#通过Git-rebase-i-修订历史commit" class="headerlink" title="通过Git rebase -i 修订历史commit"></a>通过Git rebase -i 修订历史commit</h3><p>建议在<code>git rebase -i &lt;ref&gt;</code> 目标commit id加上<code>^</code>。</p>
+<p>重置commit 时间到当前时间</p>
+<pre class=" language-shell"><code class="language-shell">git commit --amend --reset-author --no-edit</code></pre>
+<h2 id="标签管理"><a href="#标签管理" class="headerlink" title="标签管理"></a>标签管理</h2><p>发布一个版本时，我们通常先在版本库中打一个标签，这样，就唯一确定了打标签时刻的版本。将来无论什么时候，取某个标签的版本，就是把那个打标签的时刻的历史版本取出来。所以，标签也是版本库的一个快照。<br>Git的标签虽然是版本库的快照，但其实它就是指向某个<code>commit</code>的指针，<br>所以，创建和删除标签都是瞬间完成的。</p>
 <h3 id="创建标签"><a href="#创建标签" class="headerlink" title="创建标签"></a>创建标签</h3><ol>
 <li>命令<code>git tag &lt;name&gt;</code>用于新建一个标签，默认为<code>HEAD</code>，也可以指定一个<code>commit id</code>；</li>
 <li><code>git tag -a &lt;tagname&gt; -m &quot;blablabla...&quot;</code>可以指定标签信息；</li>
